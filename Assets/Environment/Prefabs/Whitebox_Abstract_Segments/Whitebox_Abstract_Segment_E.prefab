@@ -234,11 +234,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3652424716766235305}
     m_Modifications:
-    - target: {fileID: 8892431701370607196, guid: e70c700de918b74489fc1a57dca5acc9,
-        type: 3}
-      propertyPath: m_Name
-      value: Whitebox_Cube_400x400x400_B (1)
-      objectReference: {fileID: 0}
     - target: {fileID: 5562818948279886927, guid: e70c700de918b74489fc1a57dca5acc9,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -309,6 +304,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 8892431701370607196, guid: e70c700de918b74489fc1a57dca5acc9,
+        type: 3}
+      propertyPath: m_Name
+      value: Whitebox_Cube_400x400x400_B (1)
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 7946525416792727519, guid: e70c700de918b74489fc1a57dca5acc9, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: e70c700de918b74489fc1a57dca5acc9, type: 3}
@@ -325,11 +325,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3652424716766235305}
     m_Modifications:
-    - target: {fileID: 8225329290868374120, guid: 4778f54b65a68384fb6b734003c5ce53,
-        type: 3}
-      propertyPath: m_Name
-      value: Whitebox_StairsBridge_400x100x400_A (2)
-      objectReference: {fileID: 0}
     - target: {fileID: 4935211481819367547, guid: 4778f54b65a68384fb6b734003c5ce53,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -390,6 +385,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.x
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 8225329290868374120, guid: 4778f54b65a68384fb6b734003c5ce53,
+        type: 3}
+      propertyPath: m_Name
+      value: Whitebox_StairsBridge_400x100x400_A (2)
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 118832537598325893, guid: 4778f54b65a68384fb6b734003c5ce53, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 4778f54b65a68384fb6b734003c5ce53, type: 3}
@@ -406,11 +406,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3652424716766235305}
     m_Modifications:
-    - target: {fileID: 8892431701370607196, guid: e70c700de918b74489fc1a57dca5acc9,
-        type: 3}
-      propertyPath: m_Name
-      value: Whitebox_Cube_400x400x400_B
-      objectReference: {fileID: 0}
     - target: {fileID: 5562818948279886927, guid: e70c700de918b74489fc1a57dca5acc9,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -465,6 +460,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8892431701370607196, guid: e70c700de918b74489fc1a57dca5acc9,
+        type: 3}
+      propertyPath: m_Name
+      value: Whitebox_Cube_400x400x400_B
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 7946525416792727519, guid: e70c700de918b74489fc1a57dca5acc9, type: 3}
@@ -639,11 +639,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3652424716766235305}
     m_Modifications:
-    - target: {fileID: 8225329290868374120, guid: 4778f54b65a68384fb6b734003c5ce53,
-        type: 3}
-      propertyPath: m_Name
-      value: Whitebox_StairsBridge_400x100x400_A
-      objectReference: {fileID: 0}
     - target: {fileID: 4935211481819367547, guid: 4778f54b65a68384fb6b734003c5ce53,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -703,6 +698,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.x
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8225329290868374120, guid: 4778f54b65a68384fb6b734003c5ce53,
+        type: 3}
+      propertyPath: m_Name
+      value: Whitebox_StairsBridge_400x100x400_A
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 118832537598325893, guid: 4778f54b65a68384fb6b734003c5ce53, type: 3}
@@ -811,11 +811,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3652424716766235305}
     m_Modifications:
-    - target: {fileID: 8225329290868374120, guid: 4778f54b65a68384fb6b734003c5ce53,
-        type: 3}
-      propertyPath: m_Name
-      value: Whitebox_StairsBridge_400x100x400_A (1)
-      objectReference: {fileID: 0}
     - target: {fileID: 4935211481819367547, guid: 4778f54b65a68384fb6b734003c5ce53,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -876,6 +871,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.x
       value: 0.5000001
       objectReference: {fileID: 0}
+    - target: {fileID: 8225329290868374120, guid: 4778f54b65a68384fb6b734003c5ce53,
+        type: 3}
+      propertyPath: m_Name
+      value: Whitebox_StairsBridge_400x100x400_A (1)
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 118832537598325893, guid: 4778f54b65a68384fb6b734003c5ce53, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 4778f54b65a68384fb6b734003c5ce53, type: 3}
@@ -892,11 +892,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3652424716766235305}
     m_Modifications:
-    - target: {fileID: 4083812704282130816, guid: 63d38fae9d5acc74caafdd5aa6b924e7,
-        type: 3}
-      propertyPath: m_Name
-      value: Whitebox_CubeArch_400x400x200_A
-      objectReference: {fileID: 0}
     - target: {fileID: 1078550385907485587, guid: 63d38fae9d5acc74caafdd5aa6b924e7,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -966,6 +961,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.x
       value: 0.49999994
+      objectReference: {fileID: 0}
+    - target: {fileID: 4083812704282130816, guid: 63d38fae9d5acc74caafdd5aa6b924e7,
+        type: 3}
+      propertyPath: m_Name
+      value: Whitebox_CubeArch_400x400x200_A
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 7192114498693798961, guid: 63d38fae9d5acc74caafdd5aa6b924e7, type: 3}
@@ -1074,11 +1074,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3652424716766235305}
     m_Modifications:
-    - target: {fileID: 4083812704282130816, guid: 63d38fae9d5acc74caafdd5aa6b924e7,
-        type: 3}
-      propertyPath: m_Name
-      value: Whitebox_CubeArch_400x400x200_A (1)
-      objectReference: {fileID: 0}
     - target: {fileID: 1078550385907485587, guid: 63d38fae9d5acc74caafdd5aa6b924e7,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1148,6 +1143,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.x
       value: 0.49999997
+      objectReference: {fileID: 0}
+    - target: {fileID: 4083812704282130816, guid: 63d38fae9d5acc74caafdd5aa6b924e7,
+        type: 3}
+      propertyPath: m_Name
+      value: Whitebox_CubeArch_400x400x200_A (1)
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 7192114498693798961, guid: 63d38fae9d5acc74caafdd5aa6b924e7, type: 3}

@@ -838,11 +838,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 63074543}
     m_Modifications:
-    - target: {fileID: 2606754624540618874, guid: 0c63e2f4c9bd84442b2e130d992b68e9,
-        type: 3}
-      propertyPath: m_Name
-      value: Whitebox_Ground_1600x1600_A (1)
-      objectReference: {fileID: 0}
     - target: {fileID: 1330343502567916137, guid: 0c63e2f4c9bd84442b2e130d992b68e9,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -897,6 +892,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2606754624540618874, guid: 0c63e2f4c9bd84442b2e130d992b68e9,
+        type: 3}
+      propertyPath: m_Name
+      value: Whitebox_Ground_1600x1600_A (1)
       objectReference: {fileID: 0}
     - target: {fileID: 3066622777206237412, guid: 0c63e2f4c9bd84442b2e130d992b68e9,
         type: 3}
@@ -1298,11 +1298,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 63074543}
     m_Modifications:
-    - target: {fileID: 8892431701370607196, guid: e70c700de918b74489fc1a57dca5acc9,
-        type: 3}
-      propertyPath: m_Name
-      value: Whitebox_Cube_400x400x400_B
-      objectReference: {fileID: 0}
     - target: {fileID: 5562818948279886927, guid: e70c700de918b74489fc1a57dca5acc9,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1377,6 +1372,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8892431701370607196, guid: e70c700de918b74489fc1a57dca5acc9,
+        type: 3}
+      propertyPath: m_Name
+      value: Whitebox_Cube_400x400x400_B
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e70c700de918b74489fc1a57dca5acc9, type: 3}
@@ -2533,11 +2533,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 63074543}
     m_Modifications:
-    - target: {fileID: 2606754624540618874, guid: 0c63e2f4c9bd84442b2e130d992b68e9,
-        type: 3}
-      propertyPath: m_Name
-      value: Whitebox_Ground_1600x1600_A (2)
-      objectReference: {fileID: 0}
     - target: {fileID: 1330343502567916137, guid: 0c63e2f4c9bd84442b2e130d992b68e9,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2592,6 +2587,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2606754624540618874, guid: 0c63e2f4c9bd84442b2e130d992b68e9,
+        type: 3}
+      propertyPath: m_Name
+      value: Whitebox_Ground_1600x1600_A (2)
       objectReference: {fileID: 0}
     - target: {fileID: 3066622777206237412, guid: 0c63e2f4c9bd84442b2e130d992b68e9,
         type: 3}
@@ -2993,11 +2993,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 63074543}
     m_Modifications:
-    - target: {fileID: 2606754624540618874, guid: 0c63e2f4c9bd84442b2e130d992b68e9,
-        type: 3}
-      propertyPath: m_Name
-      value: Whitebox_Ground_1600x1600_A
-      objectReference: {fileID: 0}
     - target: {fileID: 1330343502567916137, guid: 0c63e2f4c9bd84442b2e130d992b68e9,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3052,6 +3047,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2606754624540618874, guid: 0c63e2f4c9bd84442b2e130d992b68e9,
+        type: 3}
+      propertyPath: m_Name
+      value: Whitebox_Ground_1600x1600_A
       objectReference: {fileID: 0}
     - target: {fileID: 3066622777206237412, guid: 0c63e2f4c9bd84442b2e130d992b68e9,
         type: 3}
@@ -3263,10 +3263,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 63074543}
     m_Modifications:
-    - target: {fileID: 3457778457105024562, guid: 64e90d5952a3786408dd390ab082119d,
+    - target: {fileID: 800227933387095227, guid: 64e90d5952a3786408dd390ab082119d,
         type: 3}
-      propertyPath: m_Name
-      value: Whitebox_Slope_400x200x400_A
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1848489015031411745, guid: 64e90d5952a3786408dd390ab082119d,
         type: 3}
@@ -3323,10 +3323,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -180.00002
       objectReference: {fileID: 0}
-    - target: {fileID: 800227933387095227, guid: 64e90d5952a3786408dd390ab082119d,
+    - target: {fileID: 3457778457105024562, guid: 64e90d5952a3786408dd390ab082119d,
         type: 3}
-      propertyPath: m_Enabled
-      value: 0
+      propertyPath: m_Name
+      value: Whitebox_Slope_400x200x400_A
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 64e90d5952a3786408dd390ab082119d, type: 3}
@@ -3343,10 +3343,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 63074543}
     m_Modifications:
-    - target: {fileID: 3457778457105024562, guid: 64e90d5952a3786408dd390ab082119d,
+    - target: {fileID: 800227933387095227, guid: 64e90d5952a3786408dd390ab082119d,
         type: 3}
-      propertyPath: m_Name
-      value: Whitebox_Slope_400x200x400_A (1)
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1848489015031411745, guid: 64e90d5952a3786408dd390ab082119d,
         type: 3}
@@ -3403,10 +3403,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -180.00002
       objectReference: {fileID: 0}
-    - target: {fileID: 800227933387095227, guid: 64e90d5952a3786408dd390ab082119d,
+    - target: {fileID: 3457778457105024562, guid: 64e90d5952a3786408dd390ab082119d,
         type: 3}
-      propertyPath: m_Enabled
-      value: 0
+      propertyPath: m_Name
+      value: Whitebox_Slope_400x200x400_A (1)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 64e90d5952a3786408dd390ab082119d, type: 3}
@@ -4088,11 +4088,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 63074543}
     m_Modifications:
-    - target: {fileID: 2606754624540618874, guid: 0c63e2f4c9bd84442b2e130d992b68e9,
-        type: 3}
-      propertyPath: m_Name
-      value: Whitebox_Ground_1600x1600_A (3)
-      objectReference: {fileID: 0}
     - target: {fileID: 1330343502567916137, guid: 0c63e2f4c9bd84442b2e130d992b68e9,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4147,6 +4142,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2606754624540618874, guid: 0c63e2f4c9bd84442b2e130d992b68e9,
+        type: 3}
+      propertyPath: m_Name
+      value: Whitebox_Ground_1600x1600_A (3)
       objectReference: {fileID: 0}
     - target: {fileID: 3066622777206237412, guid: 0c63e2f4c9bd84442b2e130d992b68e9,
         type: 3}

@@ -224,10 +224,30 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1821554815}
     m_Modifications:
+    - target: {fileID: 3938980828483661330, guid: 9816e1181cb22b54fbba797abd7b7a02,
+        type: 3}
+      propertyPath: effect
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 6385537432136862797, guid: 9816e1181cb22b54fbba797abd7b7a02,
         type: 3}
       propertyPath: m_Name
       value: Whitebox_Teleport_A
+      objectReference: {fileID: 0}
+    - target: {fileID: 7243042727325367205, guid: 9816e1181cb22b54fbba797abd7b7a02,
+        type: 3}
+      propertyPath: targetTeleporter
+      value: 
+      objectReference: {fileID: 1591529741}
+    - target: {fileID: 7428518999583802800, guid: 9816e1181cb22b54fbba797abd7b7a02,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7428518999583802800, guid: 9816e1181cb22b54fbba797abd7b7a02,
+        type: 3}
+      propertyPath: materialOverrides.Array.data[1].active
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7982249558617669214, guid: 9816e1181cb22b54fbba797abd7b7a02,
         type: 3}
@@ -284,11 +304,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 90.00001
       objectReference: {fileID: 0}
-    - target: {fileID: 7243042727325367205, guid: 9816e1181cb22b54fbba797abd7b7a02,
-        type: 3}
-      propertyPath: targetTeleporter
-      value: 
-      objectReference: {fileID: 1591529741}
     - target: {fileID: 8324625218218385843, guid: 9816e1181cb22b54fbba797abd7b7a02,
         type: 3}
       propertyPath: instanceGuid.a
@@ -298,21 +313,6 @@ PrefabInstance:
         type: 3}
       propertyPath: instanceGuid.b
       value: 9382445496439023320
-      objectReference: {fileID: 0}
-    - target: {fileID: 7428518999583802800, guid: 9816e1181cb22b54fbba797abd7b7a02,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7428518999583802800, guid: 9816e1181cb22b54fbba797abd7b7a02,
-        type: 3}
-      propertyPath: materialOverrides.Array.data[1].active
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3938980828483661330, guid: 9816e1181cb22b54fbba797abd7b7a02,
-        type: 3}
-      propertyPath: effect
-      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9816e1181cb22b54fbba797abd7b7a02, type: 3}
@@ -521,10 +521,30 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1821554815}
     m_Modifications:
+    - target: {fileID: 3938980828483661330, guid: 9816e1181cb22b54fbba797abd7b7a02,
+        type: 3}
+      propertyPath: effect
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 6385537432136862797, guid: 9816e1181cb22b54fbba797abd7b7a02,
         type: 3}
       propertyPath: m_Name
       value: Whitebox_Teleport_A (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7243042727325367205, guid: 9816e1181cb22b54fbba797abd7b7a02,
+        type: 3}
+      propertyPath: targetTeleporter
+      value: 
+      objectReference: {fileID: 796015870}
+    - target: {fileID: 7428518999583802800, guid: 9816e1181cb22b54fbba797abd7b7a02,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7428518999583802800, guid: 9816e1181cb22b54fbba797abd7b7a02,
+        type: 3}
+      propertyPath: materialOverrides.Array.data[1].active
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7982249558617669214, guid: 9816e1181cb22b54fbba797abd7b7a02,
         type: 3}
@@ -581,11 +601,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -90.00001
       objectReference: {fileID: 0}
-    - target: {fileID: 7243042727325367205, guid: 9816e1181cb22b54fbba797abd7b7a02,
-        type: 3}
-      propertyPath: targetTeleporter
-      value: 
-      objectReference: {fileID: 796015870}
     - target: {fileID: 8324625218218385843, guid: 9816e1181cb22b54fbba797abd7b7a02,
         type: 3}
       propertyPath: instanceGuid.a
@@ -595,21 +610,6 @@ PrefabInstance:
         type: 3}
       propertyPath: instanceGuid.b
       value: 13512422511047555823
-      objectReference: {fileID: 0}
-    - target: {fileID: 7428518999583802800, guid: 9816e1181cb22b54fbba797abd7b7a02,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7428518999583802800, guid: 9816e1181cb22b54fbba797abd7b7a02,
-        type: 3}
-      propertyPath: materialOverrides.Array.data[1].active
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3938980828483661330, guid: 9816e1181cb22b54fbba797abd7b7a02,
-        type: 3}
-      propertyPath: effect
-      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9816e1181cb22b54fbba797abd7b7a02, type: 3}

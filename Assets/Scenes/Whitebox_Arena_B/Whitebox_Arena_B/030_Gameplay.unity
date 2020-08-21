@@ -704,6 +704,36 @@ PrefabInstance:
       propertyPath: m_Name
       value: Whitebox_Teleport_A_Side_B
       objectReference: {fileID: 0}
+    - target: {fileID: 7185858532240844084, guid: 9816e1181cb22b54fbba797abd7b7a02,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7185858532240844084, guid: 9816e1181cb22b54fbba797abd7b7a02,
+        type: 3}
+      propertyPath: materialOverrides.Array.data[0].active
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7243042727325367205, guid: 9816e1181cb22b54fbba797abd7b7a02,
+        type: 3}
+      propertyPath: targetTeleporter
+      value: 
+      objectReference: {fileID: 6817730614571996581}
+    - target: {fileID: 7428518999583802800, guid: 9816e1181cb22b54fbba797abd7b7a02,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7428518999583802800, guid: 9816e1181cb22b54fbba797abd7b7a02,
+        type: 3}
+      propertyPath: materialOverrides.Array.data[0].active
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7428518999583802800, guid: 9816e1181cb22b54fbba797abd7b7a02,
+        type: 3}
+      propertyPath: materialOverrides.Array.data[1].active
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7982249558617669214, guid: 9816e1181cb22b54fbba797abd7b7a02,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -759,11 +789,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -180.00002
       objectReference: {fileID: 0}
-    - target: {fileID: 7243042727325367205, guid: 9816e1181cb22b54fbba797abd7b7a02,
-        type: 3}
-      propertyPath: targetTeleporter
-      value: 
-      objectReference: {fileID: 6817730614571996581}
     - target: {fileID: 8324625218218385843, guid: 9816e1181cb22b54fbba797abd7b7a02,
         type: 3}
       propertyPath: instanceGuid.a
@@ -773,31 +798,6 @@ PrefabInstance:
         type: 3}
       propertyPath: instanceGuid.b
       value: 10193401293524827920
-      objectReference: {fileID: 0}
-    - target: {fileID: 7428518999583802800, guid: 9816e1181cb22b54fbba797abd7b7a02,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7428518999583802800, guid: 9816e1181cb22b54fbba797abd7b7a02,
-        type: 3}
-      propertyPath: materialOverrides.Array.data[0].active
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7428518999583802800, guid: 9816e1181cb22b54fbba797abd7b7a02,
-        type: 3}
-      propertyPath: materialOverrides.Array.data[1].active
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7185858532240844084, guid: 9816e1181cb22b54fbba797abd7b7a02,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7185858532240844084, guid: 9816e1181cb22b54fbba797abd7b7a02,
-        type: 3}
-      propertyPath: materialOverrides.Array.data[0].active
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9816e1181cb22b54fbba797abd7b7a02, type: 3}
@@ -830,6 +830,36 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Whitebox_Teleport_A_Side_A
+      objectReference: {fileID: 0}
+    - target: {fileID: 7185858532240844084, guid: 9816e1181cb22b54fbba797abd7b7a02,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7185858532240844084, guid: 9816e1181cb22b54fbba797abd7b7a02,
+        type: 3}
+      propertyPath: materialOverrides.Array.data[0].active
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7243042727325367205, guid: 9816e1181cb22b54fbba797abd7b7a02,
+        type: 3}
+      propertyPath: targetTeleporter
+      value: 
+      objectReference: {fileID: 2088158908}
+    - target: {fileID: 7428518999583802800, guid: 9816e1181cb22b54fbba797abd7b7a02,
+        type: 3}
+      propertyPath: materialOverrides.Array.data[0].active
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7428518999583802800, guid: 9816e1181cb22b54fbba797abd7b7a02,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7428518999583802800, guid: 9816e1181cb22b54fbba797abd7b7a02,
+        type: 3}
+      propertyPath: materialOverrides.Array.data[1].active
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7982249558617669214, guid: 9816e1181cb22b54fbba797abd7b7a02,
         type: 3}
@@ -886,11 +916,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -90.00001
       objectReference: {fileID: 0}
-    - target: {fileID: 7243042727325367205, guid: 9816e1181cb22b54fbba797abd7b7a02,
-        type: 3}
-      propertyPath: targetTeleporter
-      value: 
-      objectReference: {fileID: 2088158908}
     - target: {fileID: 8324625218218385843, guid: 9816e1181cb22b54fbba797abd7b7a02,
         type: 3}
       propertyPath: instanceGuid.a
@@ -900,31 +925,6 @@ PrefabInstance:
         type: 3}
       propertyPath: instanceGuid.b
       value: 11342248383886714794
-      objectReference: {fileID: 0}
-    - target: {fileID: 7428518999583802800, guid: 9816e1181cb22b54fbba797abd7b7a02,
-        type: 3}
-      propertyPath: materialOverrides.Array.data[0].active
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7428518999583802800, guid: 9816e1181cb22b54fbba797abd7b7a02,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7428518999583802800, guid: 9816e1181cb22b54fbba797abd7b7a02,
-        type: 3}
-      propertyPath: materialOverrides.Array.data[1].active
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7185858532240844084, guid: 9816e1181cb22b54fbba797abd7b7a02,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7185858532240844084, guid: 9816e1181cb22b54fbba797abd7b7a02,
-        type: 3}
-      propertyPath: materialOverrides.Array.data[0].active
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9816e1181cb22b54fbba797abd7b7a02, type: 3}

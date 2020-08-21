@@ -133,6 +133,32 @@ PrefabInstance:
       propertyPath: m_Name
       value: Whitebox_Teleport_Set_A_A
       objectReference: {fileID: 0}
+    - target: {fileID: 7185858532240844084, guid: 9816e1181cb22b54fbba797abd7b7a02,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7243042727325367205, guid: 9816e1181cb22b54fbba797abd7b7a02,
+        type: 3}
+      propertyPath: targetTeleporter
+      value: 
+      objectReference: {fileID: 285859893}
+    - target: {fileID: 7428518999583802800, guid: 9816e1181cb22b54fbba797abd7b7a02,
+        type: 3}
+      propertyPath: materialOverrides.Array.data[1].propertyOverrideAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 1c0ff65eaf0c1d44baec51c3bba29316,
+        type: 2}
+    - target: {fileID: 7428518999583802800, guid: 9816e1181cb22b54fbba797abd7b7a02,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7428518999583802800, guid: 9816e1181cb22b54fbba797abd7b7a02,
+        type: 3}
+      propertyPath: materialOverrides.Array.data[1].active
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7982249558617669214, guid: 9816e1181cb22b54fbba797abd7b7a02,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -188,11 +214,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7243042727325367205, guid: 9816e1181cb22b54fbba797abd7b7a02,
-        type: 3}
-      propertyPath: targetTeleporter
-      value: 
-      objectReference: {fileID: 285859893}
     - target: {fileID: 8324625218218385843, guid: 9816e1181cb22b54fbba797abd7b7a02,
         type: 3}
       propertyPath: instanceGuid.a
@@ -202,27 +223,6 @@ PrefabInstance:
         type: 3}
       propertyPath: instanceGuid.b
       value: 10815309790409592835
-      objectReference: {fileID: 0}
-    - target: {fileID: 7428518999583802800, guid: 9816e1181cb22b54fbba797abd7b7a02,
-        type: 3}
-      propertyPath: materialOverrides.Array.data[1].propertyOverrideAsset
-      value: 
-      objectReference: {fileID: 11400000, guid: 1c0ff65eaf0c1d44baec51c3bba29316,
-        type: 2}
-    - target: {fileID: 7428518999583802800, guid: 9816e1181cb22b54fbba797abd7b7a02,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7428518999583802800, guid: 9816e1181cb22b54fbba797abd7b7a02,
-        type: 3}
-      propertyPath: materialOverrides.Array.data[1].active
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7185858532240844084, guid: 9816e1181cb22b54fbba797abd7b7a02,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9816e1181cb22b54fbba797abd7b7a02, type: 3}
@@ -320,6 +320,32 @@ PrefabInstance:
       propertyPath: m_Name
       value: Whitebox_Teleport_Set_A_B
       objectReference: {fileID: 0}
+    - target: {fileID: 7185858532240844084, guid: 9816e1181cb22b54fbba797abd7b7a02,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7243042727325367205, guid: 9816e1181cb22b54fbba797abd7b7a02,
+        type: 3}
+      propertyPath: targetTeleporter
+      value: 
+      objectReference: {fileID: 78586221}
+    - target: {fileID: 7428518999583802800, guid: 9816e1181cb22b54fbba797abd7b7a02,
+        type: 3}
+      propertyPath: materialOverrides.Array.data[1].propertyOverrideAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 1c0ff65eaf0c1d44baec51c3bba29316,
+        type: 2}
+    - target: {fileID: 7428518999583802800, guid: 9816e1181cb22b54fbba797abd7b7a02,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7428518999583802800, guid: 9816e1181cb22b54fbba797abd7b7a02,
+        type: 3}
+      propertyPath: materialOverrides.Array.data[1].active
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7982249558617669214, guid: 9816e1181cb22b54fbba797abd7b7a02,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -375,11 +401,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -90.00001
       objectReference: {fileID: 0}
-    - target: {fileID: 7243042727325367205, guid: 9816e1181cb22b54fbba797abd7b7a02,
-        type: 3}
-      propertyPath: targetTeleporter
-      value: 
-      objectReference: {fileID: 78586221}
     - target: {fileID: 8324625218218385843, guid: 9816e1181cb22b54fbba797abd7b7a02,
         type: 3}
       propertyPath: instanceGuid.a
@@ -389,27 +410,6 @@ PrefabInstance:
         type: 3}
       propertyPath: instanceGuid.b
       value: 12134756344835310510
-      objectReference: {fileID: 0}
-    - target: {fileID: 7428518999583802800, guid: 9816e1181cb22b54fbba797abd7b7a02,
-        type: 3}
-      propertyPath: materialOverrides.Array.data[1].propertyOverrideAsset
-      value: 
-      objectReference: {fileID: 11400000, guid: 1c0ff65eaf0c1d44baec51c3bba29316,
-        type: 2}
-    - target: {fileID: 7428518999583802800, guid: 9816e1181cb22b54fbba797abd7b7a02,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7428518999583802800, guid: 9816e1181cb22b54fbba797abd7b7a02,
-        type: 3}
-      propertyPath: materialOverrides.Array.data[1].active
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7185858532240844084, guid: 9816e1181cb22b54fbba797abd7b7a02,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9816e1181cb22b54fbba797abd7b7a02, type: 3}
@@ -727,6 +727,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 548194478}
     m_Modifications:
+    - target: {fileID: 1844665601742446, guid: 1cedae2e6b77dd84ba4e3d8134cff26d, type: 3}
+      propertyPath: m_Name
+      value: DamageBox
+      objectReference: {fileID: 0}
     - target: {fileID: 4647082404031594, guid: 1cedae2e6b77dd84ba4e3d8134cff26d, type: 3}
       propertyPath: m_LocalPosition.x
       value: -28.3
@@ -778,10 +782,6 @@ PrefabInstance:
     - target: {fileID: 4647082404031594, guid: 1cedae2e6b77dd84ba4e3d8134cff26d, type: 3}
       propertyPath: m_LocalScale.z
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1844665601742446, guid: 1cedae2e6b77dd84ba4e3d8134cff26d, type: 3}
-      propertyPath: m_Name
-      value: DamageBox
       objectReference: {fileID: 0}
     - target: {fileID: 7786755456775547984, guid: 1cedae2e6b77dd84ba4e3d8134cff26d,
         type: 3}
@@ -949,10 +949,35 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1297734495}
     m_Modifications:
+    - target: {fileID: 2431586390228831282, guid: 9816e1181cb22b54fbba797abd7b7a02,
+        type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 94b5313408efd8c42a9bfc6d35ba41ce, type: 2}
     - target: {fileID: 6385537432136862797, guid: 9816e1181cb22b54fbba797abd7b7a02,
         type: 3}
       propertyPath: m_Name
       value: Whitebox_Teleport_Set_B_B
+      objectReference: {fileID: 0}
+    - target: {fileID: 7185858532240844084, guid: 9816e1181cb22b54fbba797abd7b7a02,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7243042727325367205, guid: 9816e1181cb22b54fbba797abd7b7a02,
+        type: 3}
+      propertyPath: targetTeleporter
+      value: 
+      objectReference: {fileID: 1731713341}
+    - target: {fileID: 7428518999583802800, guid: 9816e1181cb22b54fbba797abd7b7a02,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7428518999583802800, guid: 9816e1181cb22b54fbba797abd7b7a02,
+        type: 3}
+      propertyPath: materialOverrides.Array.data[1].active
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7982249558617669214, guid: 9816e1181cb22b54fbba797abd7b7a02,
         type: 3}
@@ -1009,11 +1034,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -90.00001
       objectReference: {fileID: 0}
-    - target: {fileID: 7243042727325367205, guid: 9816e1181cb22b54fbba797abd7b7a02,
-        type: 3}
-      propertyPath: targetTeleporter
-      value: 
-      objectReference: {fileID: 1731713341}
     - target: {fileID: 8324625218218385843, guid: 9816e1181cb22b54fbba797abd7b7a02,
         type: 3}
       propertyPath: instanceGuid.a
@@ -1024,26 +1044,6 @@ PrefabInstance:
       propertyPath: instanceGuid.b
       value: 11024642485294889660
       objectReference: {fileID: 0}
-    - target: {fileID: 7428518999583802800, guid: 9816e1181cb22b54fbba797abd7b7a02,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7428518999583802800, guid: 9816e1181cb22b54fbba797abd7b7a02,
-        type: 3}
-      propertyPath: materialOverrides.Array.data[1].active
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7185858532240844084, guid: 9816e1181cb22b54fbba797abd7b7a02,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2431586390228831282, guid: 9816e1181cb22b54fbba797abd7b7a02,
-        type: 3}
-      propertyPath: m_Materials.Array.data[1]
-      value: 
-      objectReference: {fileID: 2100000, guid: 94b5313408efd8c42a9bfc6d35ba41ce, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9816e1181cb22b54fbba797abd7b7a02, type: 3}
 --- !u!4 &1451995563 stripped
@@ -1071,10 +1071,35 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1297734495}
     m_Modifications:
+    - target: {fileID: 2431586390228831282, guid: 9816e1181cb22b54fbba797abd7b7a02,
+        type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 94b5313408efd8c42a9bfc6d35ba41ce, type: 2}
     - target: {fileID: 6385537432136862797, guid: 9816e1181cb22b54fbba797abd7b7a02,
         type: 3}
       propertyPath: m_Name
       value: Whitebox_Teleport_Set_B_A
+      objectReference: {fileID: 0}
+    - target: {fileID: 7185858532240844084, guid: 9816e1181cb22b54fbba797abd7b7a02,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7243042727325367205, guid: 9816e1181cb22b54fbba797abd7b7a02,
+        type: 3}
+      propertyPath: targetTeleporter
+      value: 
+      objectReference: {fileID: 1451995564}
+    - target: {fileID: 7428518999583802800, guid: 9816e1181cb22b54fbba797abd7b7a02,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7428518999583802800, guid: 9816e1181cb22b54fbba797abd7b7a02,
+        type: 3}
+      propertyPath: materialOverrides.Array.data[1].active
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7982249558617669214, guid: 9816e1181cb22b54fbba797abd7b7a02,
         type: 3}
@@ -1131,11 +1156,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 90.00001
       objectReference: {fileID: 0}
-    - target: {fileID: 7243042727325367205, guid: 9816e1181cb22b54fbba797abd7b7a02,
-        type: 3}
-      propertyPath: targetTeleporter
-      value: 
-      objectReference: {fileID: 1451995564}
     - target: {fileID: 8324625218218385843, guid: 9816e1181cb22b54fbba797abd7b7a02,
         type: 3}
       propertyPath: instanceGuid.a
@@ -1146,26 +1166,6 @@ PrefabInstance:
       propertyPath: instanceGuid.b
       value: 9974952561097031452
       objectReference: {fileID: 0}
-    - target: {fileID: 7428518999583802800, guid: 9816e1181cb22b54fbba797abd7b7a02,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7428518999583802800, guid: 9816e1181cb22b54fbba797abd7b7a02,
-        type: 3}
-      propertyPath: materialOverrides.Array.data[1].active
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7185858532240844084, guid: 9816e1181cb22b54fbba797abd7b7a02,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2431586390228831282, guid: 9816e1181cb22b54fbba797abd7b7a02,
-        type: 3}
-      propertyPath: m_Materials.Array.data[1]
-      value: 
-      objectReference: {fileID: 2100000, guid: 94b5313408efd8c42a9bfc6d35ba41ce, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9816e1181cb22b54fbba797abd7b7a02, type: 3}
 --- !u!114 &1731713341 stripped
