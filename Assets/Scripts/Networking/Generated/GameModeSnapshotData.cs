@@ -120,7 +120,7 @@ public struct GameModeSnapshotData : ISnapshotData<GameModeSnapshotData>
         GameModeDatateamScore1 = predictor.PredictInt(GameModeDatateamScore1, baseline1.GameModeDatateamScore1, baseline2.GameModeDatateamScore1);
     }
 
-    public void Serialize(int networkId, ref GameModeSnapshotData baseline, DataStreamWriter writer, NetworkCompressionModel compressionModel)
+    public void Serialize(int networkId, ref GameModeSnapshotData baseline, ref DataStreamWriter writer, NetworkCompressionModel compressionModel)
     {
         changeMask0 = (GameModeDatagameTimerSeconds != baseline.GameModeDatagameTimerSeconds) ? 1u : 0;
         changeMask0 |= GameModeDatagameTimerMessage.Equals(baseline.GameModeDatagameTimerMessage) ? 0 : (1u<<1);
@@ -215,18 +215,18 @@ public struct GameModeSnapshotData : ISnapshotData<GameModeSnapshotData>
             writer.WritePackedIntDelta(GameModeDatateamScore1, baseline.GameModeDatateamScore1, compressionModel);
     }
 
-    public void Deserialize(uint tick, ref GameModeSnapshotData baseline, DataStreamReader reader, ref DataStreamReader.Context ctx,
+    public void Deserialize(uint tick, ref GameModeSnapshotData baseline, ref DataStreamReader reader,
         NetworkCompressionModel compressionModel)
     {
         this.tick = tick;
-        changeMask0 = reader.ReadPackedUIntDelta(ref ctx, baseline.changeMask0, compressionModel);
+        changeMask0 = reader.ReadPackedUIntDelta(baseline.changeMask0, compressionModel);
         if ((changeMask0 & (1 << 0)) != 0)
-            GameModeDatagameTimerSeconds = reader.ReadPackedIntDelta(ref ctx, baseline.GameModeDatagameTimerSeconds, compressionModel);
+            GameModeDatagameTimerSeconds = reader.ReadPackedIntDelta(baseline.GameModeDatagameTimerSeconds, compressionModel);
         else
             GameModeDatagameTimerSeconds = baseline.GameModeDatagameTimerSeconds;
         if ((changeMask0 & (1 << 1)) != 0)
         {
-            GameModeDatagameTimerMessage.LengthInBytes = (ushort)reader.ReadPackedUIntDelta(ref ctx, (uint)baseline.GameModeDatagameTimerMessage.LengthInBytes, compressionModel);
+            GameModeDatagameTimerMessage.LengthInBytes = (ushort)reader.ReadPackedUIntDelta((uint)baseline.GameModeDatagameTimerMessage.LengthInBytes, compressionModel);
             var GameModeDatagameTimerMessageBaselineLength = (ushort)math.min((uint)GameModeDatagameTimerMessage.LengthInBytes, baseline.GameModeDatagameTimerMessage.LengthInBytes);
             for (int sb = 0; sb < GameModeDatagameTimerMessageBaselineLength; ++sb)
             {
@@ -235,7 +235,7 @@ public struct GameModeSnapshotData : ISnapshotData<GameModeSnapshotData>
                     fixed (byte* b1 = &GameModeDatagameTimerMessage.buffer.byte0000)
                     fixed (byte* b2 = &baseline.GameModeDatagameTimerMessage.buffer.byte0000)
                     {
-                        b1[sb] = (byte)reader.ReadPackedUIntDelta(ref ctx, b2[sb], compressionModel);
+                        b1[sb] = (byte)reader.ReadPackedUIntDelta(b2[sb], compressionModel);
                     }
                 }
             }
@@ -245,7 +245,7 @@ public struct GameModeSnapshotData : ISnapshotData<GameModeSnapshotData>
                 {
                     fixed (byte* b = &GameModeDatagameTimerMessage.buffer.byte0000)
                     {
-                        b[sb] = (byte)reader.ReadPackedUIntDelta(ref ctx, 0, compressionModel);
+                        b[sb] = (byte)reader.ReadPackedUIntDelta(0, compressionModel);
                     }
                 }
             }
@@ -254,7 +254,7 @@ public struct GameModeSnapshotData : ISnapshotData<GameModeSnapshotData>
             GameModeDatagameTimerMessage = baseline.GameModeDatagameTimerMessage;
         if ((changeMask0 & (1 << 2)) != 0)
         {
-            GameModeDatateamName0.LengthInBytes = (ushort)reader.ReadPackedUIntDelta(ref ctx, (uint)baseline.GameModeDatateamName0.LengthInBytes, compressionModel);
+            GameModeDatateamName0.LengthInBytes = (ushort)reader.ReadPackedUIntDelta((uint)baseline.GameModeDatateamName0.LengthInBytes, compressionModel);
             var GameModeDatateamName0BaselineLength = (ushort)math.min((uint)GameModeDatateamName0.LengthInBytes, baseline.GameModeDatateamName0.LengthInBytes);
             for (int sb = 0; sb < GameModeDatateamName0BaselineLength; ++sb)
             {
@@ -263,7 +263,7 @@ public struct GameModeSnapshotData : ISnapshotData<GameModeSnapshotData>
                     fixed (byte* b1 = &GameModeDatateamName0.buffer.byte0000)
                     fixed (byte* b2 = &baseline.GameModeDatateamName0.buffer.byte0000)
                     {
-                        b1[sb] = (byte)reader.ReadPackedUIntDelta(ref ctx, b2[sb], compressionModel);
+                        b1[sb] = (byte)reader.ReadPackedUIntDelta(b2[sb], compressionModel);
                     }
                 }
             }
@@ -273,7 +273,7 @@ public struct GameModeSnapshotData : ISnapshotData<GameModeSnapshotData>
                 {
                     fixed (byte* b = &GameModeDatateamName0.buffer.byte0000)
                     {
-                        b[sb] = (byte)reader.ReadPackedUIntDelta(ref ctx, 0, compressionModel);
+                        b[sb] = (byte)reader.ReadPackedUIntDelta(0, compressionModel);
                     }
                 }
             }
@@ -282,7 +282,7 @@ public struct GameModeSnapshotData : ISnapshotData<GameModeSnapshotData>
             GameModeDatateamName0 = baseline.GameModeDatateamName0;
         if ((changeMask0 & (1 << 3)) != 0)
         {
-            GameModeDatateamName1.LengthInBytes = (ushort)reader.ReadPackedUIntDelta(ref ctx, (uint)baseline.GameModeDatateamName1.LengthInBytes, compressionModel);
+            GameModeDatateamName1.LengthInBytes = (ushort)reader.ReadPackedUIntDelta((uint)baseline.GameModeDatateamName1.LengthInBytes, compressionModel);
             var GameModeDatateamName1BaselineLength = (ushort)math.min((uint)GameModeDatateamName1.LengthInBytes, baseline.GameModeDatateamName1.LengthInBytes);
             for (int sb = 0; sb < GameModeDatateamName1BaselineLength; ++sb)
             {
@@ -291,7 +291,7 @@ public struct GameModeSnapshotData : ISnapshotData<GameModeSnapshotData>
                     fixed (byte* b1 = &GameModeDatateamName1.buffer.byte0000)
                     fixed (byte* b2 = &baseline.GameModeDatateamName1.buffer.byte0000)
                     {
-                        b1[sb] = (byte)reader.ReadPackedUIntDelta(ref ctx, b2[sb], compressionModel);
+                        b1[sb] = (byte)reader.ReadPackedUIntDelta(b2[sb], compressionModel);
                     }
                 }
             }
@@ -301,7 +301,7 @@ public struct GameModeSnapshotData : ISnapshotData<GameModeSnapshotData>
                 {
                     fixed (byte* b = &GameModeDatateamName1.buffer.byte0000)
                     {
-                        b[sb] = (byte)reader.ReadPackedUIntDelta(ref ctx, 0, compressionModel);
+                        b[sb] = (byte)reader.ReadPackedUIntDelta(0, compressionModel);
                     }
                 }
             }
@@ -309,11 +309,11 @@ public struct GameModeSnapshotData : ISnapshotData<GameModeSnapshotData>
         else
             GameModeDatateamName1 = baseline.GameModeDatateamName1;
         if ((changeMask0 & (1 << 4)) != 0)
-            GameModeDatateamScore0 = reader.ReadPackedIntDelta(ref ctx, baseline.GameModeDatateamScore0, compressionModel);
+            GameModeDatateamScore0 = reader.ReadPackedIntDelta(baseline.GameModeDatateamScore0, compressionModel);
         else
             GameModeDatateamScore0 = baseline.GameModeDatateamScore0;
         if ((changeMask0 & (1 << 5)) != 0)
-            GameModeDatateamScore1 = reader.ReadPackedIntDelta(ref ctx, baseline.GameModeDatateamScore1, compressionModel);
+            GameModeDatateamScore1 = reader.ReadPackedIntDelta(baseline.GameModeDatateamScore1, compressionModel);
         else
             GameModeDatateamScore1 = baseline.GameModeDatateamScore1;
     }

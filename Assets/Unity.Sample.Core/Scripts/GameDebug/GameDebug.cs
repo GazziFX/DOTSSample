@@ -16,10 +16,10 @@ namespace Unity.Sample.Core
 
         public static World FindWorld(WorldId worldId)
         {
-            for (int i = 0; i < World.AllWorlds.Count; i++)
+            for (int i = 0; i < World.All.Count; i++)
             {
-                if (worldId == (WorldId) World.AllWorlds[i])
-                    return World.AllWorlds[i];
+                if (worldId == (WorldId) World.All[i])
+                    return World.All[i];
             }
 
             return null;

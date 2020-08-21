@@ -55,54 +55,52 @@ public struct DotsSampleGhostDeserializerCollection : IGhostDeserializerCollecti
         m_TeleporterSnapshotDataFromEntity = system.GetBufferFromEntity<TeleporterSnapshotData>();
     }
     public bool Deserialize(int serializer, Entity entity, uint snapshot, uint baseline, uint baseline2, uint baseline3,
-        DataStreamReader reader,
-        ref DataStreamReader.Context ctx, NetworkCompressionModel compressionModel)
+        ref DataStreamReader reader, NetworkCompressionModel compressionModel)
     {
         switch (serializer)
         {
             case 0:
                 return GhostReceiveSystem<DotsSampleGhostDeserializerCollection>.InvokeDeserialize(m_PlayerStateSnapshotDataFromEntity, entity, snapshot, baseline, baseline2,
-                baseline3, reader, ref ctx, compressionModel);
+                baseline3, ref reader, compressionModel);
             case 1:
                 return GhostReceiveSystem<DotsSampleGhostDeserializerCollection>.InvokeDeserialize(m_Char_TerraformerSnapshotDataFromEntity, entity, snapshot, baseline, baseline2,
-                baseline3, reader, ref ctx, compressionModel);
+                baseline3, ref reader, compressionModel);
             case 2:
                 return GhostReceiveSystem<DotsSampleGhostDeserializerCollection>.InvokeDeserialize(m_Weapon_TerraformerSnapshotDataFromEntity, entity, snapshot, baseline, baseline2,
-                baseline3, reader, ref ctx, compressionModel);
+                baseline3, ref reader, compressionModel);
             case 3:
                 return GhostReceiveSystem<DotsSampleGhostDeserializerCollection>.InvokeDeserialize(m_GameModeSnapshotDataFromEntity, entity, snapshot, baseline, baseline2,
-                baseline3, reader, ref ctx, compressionModel);
+                baseline3, ref reader, compressionModel);
             case 4:
                 return GhostReceiveSystem<DotsSampleGhostDeserializerCollection>.InvokeDeserialize(m_TeleporterSnapshotDataFromEntity, entity, snapshot, baseline, baseline2,
-                baseline3, reader, ref ctx, compressionModel);
+                baseline3, ref reader, compressionModel);
             default:
                 throw new ArgumentException("Invalid serializer type");
         }
     }
-    public void Spawn(int serializer, int ghostId, uint snapshot, DataStreamReader reader,
-        ref DataStreamReader.Context ctx, NetworkCompressionModel compressionModel)
+    public void Spawn(int serializer, int ghostId, uint snapshot, ref DataStreamReader reader, NetworkCompressionModel compressionModel)
     {
         switch (serializer)
         {
             case 0:
                 m_PlayerStateSnapshotDataNewGhostIds.Add(ghostId);
-                m_PlayerStateSnapshotDataNewGhosts.Add(GhostReceiveSystem<DotsSampleGhostDeserializerCollection>.InvokeSpawn<PlayerStateSnapshotData>(snapshot, reader, ref ctx, compressionModel));
+                m_PlayerStateSnapshotDataNewGhosts.Add(GhostReceiveSystem<DotsSampleGhostDeserializerCollection>.InvokeSpawn<PlayerStateSnapshotData>(snapshot, ref reader, compressionModel));
                 break;
             case 1:
                 m_Char_TerraformerSnapshotDataNewGhostIds.Add(ghostId);
-                m_Char_TerraformerSnapshotDataNewGhosts.Add(GhostReceiveSystem<DotsSampleGhostDeserializerCollection>.InvokeSpawn<Char_TerraformerSnapshotData>(snapshot, reader, ref ctx, compressionModel));
+                m_Char_TerraformerSnapshotDataNewGhosts.Add(GhostReceiveSystem<DotsSampleGhostDeserializerCollection>.InvokeSpawn<Char_TerraformerSnapshotData>(snapshot, ref reader, compressionModel));
                 break;
             case 2:
                 m_Weapon_TerraformerSnapshotDataNewGhostIds.Add(ghostId);
-                m_Weapon_TerraformerSnapshotDataNewGhosts.Add(GhostReceiveSystem<DotsSampleGhostDeserializerCollection>.InvokeSpawn<Weapon_TerraformerSnapshotData>(snapshot, reader, ref ctx, compressionModel));
+                m_Weapon_TerraformerSnapshotDataNewGhosts.Add(GhostReceiveSystem<DotsSampleGhostDeserializerCollection>.InvokeSpawn<Weapon_TerraformerSnapshotData>(snapshot, ref reader, compressionModel));
                 break;
             case 3:
                 m_GameModeSnapshotDataNewGhostIds.Add(ghostId);
-                m_GameModeSnapshotDataNewGhosts.Add(GhostReceiveSystem<DotsSampleGhostDeserializerCollection>.InvokeSpawn<GameModeSnapshotData>(snapshot, reader, ref ctx, compressionModel));
+                m_GameModeSnapshotDataNewGhosts.Add(GhostReceiveSystem<DotsSampleGhostDeserializerCollection>.InvokeSpawn<GameModeSnapshotData>(snapshot, ref reader, compressionModel));
                 break;
             case 4:
                 m_TeleporterSnapshotDataNewGhostIds.Add(ghostId);
-                m_TeleporterSnapshotDataNewGhosts.Add(GhostReceiveSystem<DotsSampleGhostDeserializerCollection>.InvokeSpawn<TeleporterSnapshotData>(snapshot, reader, ref ctx, compressionModel));
+                m_TeleporterSnapshotDataNewGhosts.Add(GhostReceiveSystem<DotsSampleGhostDeserializerCollection>.InvokeSpawn<TeleporterSnapshotData>(snapshot, ref reader, compressionModel));
                 break;
             default:
                 throw new ArgumentException("Invalid serializer type");

@@ -377,7 +377,7 @@ public struct PlayerStateSnapshotData : ISnapshotData<PlayerStateSnapshotData>
         PlayerStategoalCompletion = predictor.PredictInt(PlayerStategoalCompletion, baseline1.PlayerStategoalCompletion, baseline2.PlayerStategoalCompletion);
     }
 
-    public void Serialize(int networkId, ref PlayerStateSnapshotData baseline, DataStreamWriter writer, NetworkCompressionModel compressionModel)
+    public void Serialize(int networkId, ref PlayerStateSnapshotData baseline, ref DataStreamWriter writer, NetworkCompressionModel compressionModel)
     {
         changeMask0 = (PlayerStateplayerId != baseline.PlayerStateplayerId) ? 1u : 0;
         changeMask0 |= PlayerStateplayerName.Equals(baseline.PlayerStateplayerName) ? 0 : (1u<<1);
@@ -544,18 +544,18 @@ public struct PlayerStateSnapshotData : ISnapshotData<PlayerStateSnapshotData>
             writer.WritePackedIntDelta(PlayerStategoalCompletion, baseline.PlayerStategoalCompletion, compressionModel);
     }
 
-    public void Deserialize(uint tick, ref PlayerStateSnapshotData baseline, DataStreamReader reader, ref DataStreamReader.Context ctx,
+    public void Deserialize(uint tick, ref PlayerStateSnapshotData baseline, ref DataStreamReader reader,
         NetworkCompressionModel compressionModel)
     {
         this.tick = tick;
-        changeMask0 = reader.ReadPackedUIntDelta(ref ctx, baseline.changeMask0, compressionModel);
+        changeMask0 = reader.ReadPackedUIntDelta(baseline.changeMask0, compressionModel);
         if ((changeMask0 & (1 << 0)) != 0)
-            PlayerStateplayerId = reader.ReadPackedIntDelta(ref ctx, baseline.PlayerStateplayerId, compressionModel);
+            PlayerStateplayerId = reader.ReadPackedIntDelta(baseline.PlayerStateplayerId, compressionModel);
         else
             PlayerStateplayerId = baseline.PlayerStateplayerId;
         if ((changeMask0 & (1 << 1)) != 0)
         {
-            PlayerStateplayerName.LengthInBytes = (ushort)reader.ReadPackedUIntDelta(ref ctx, (uint)baseline.PlayerStateplayerName.LengthInBytes, compressionModel);
+            PlayerStateplayerName.LengthInBytes = (ushort)reader.ReadPackedUIntDelta((uint)baseline.PlayerStateplayerName.LengthInBytes, compressionModel);
             var PlayerStateplayerNameBaselineLength = (ushort)math.min((uint)PlayerStateplayerName.LengthInBytes, baseline.PlayerStateplayerName.LengthInBytes);
             for (int sb = 0; sb < PlayerStateplayerNameBaselineLength; ++sb)
             {
@@ -564,7 +564,7 @@ public struct PlayerStateSnapshotData : ISnapshotData<PlayerStateSnapshotData>
                     fixed (byte* b1 = &PlayerStateplayerName.buffer.byte0000)
                     fixed (byte* b2 = &baseline.PlayerStateplayerName.buffer.byte0000)
                     {
-                        b1[sb] = (byte)reader.ReadPackedUIntDelta(ref ctx, b2[sb], compressionModel);
+                        b1[sb] = (byte)reader.ReadPackedUIntDelta(b2[sb], compressionModel);
                     }
                 }
             }
@@ -574,7 +574,7 @@ public struct PlayerStateSnapshotData : ISnapshotData<PlayerStateSnapshotData>
                 {
                     fixed (byte* b = &PlayerStateplayerName.buffer.byte0000)
                     {
-                        b[sb] = (byte)reader.ReadPackedUIntDelta(ref ctx, 0, compressionModel);
+                        b[sb] = (byte)reader.ReadPackedUIntDelta(0, compressionModel);
                     }
                 }
             }
@@ -582,40 +582,40 @@ public struct PlayerStateSnapshotData : ISnapshotData<PlayerStateSnapshotData>
         else
             PlayerStateplayerName = baseline.PlayerStateplayerName;
         if ((changeMask0 & (1 << 2)) != 0)
-            PlayerStateteamIndex = reader.ReadPackedIntDelta(ref ctx, baseline.PlayerStateteamIndex, compressionModel);
+            PlayerStateteamIndex = reader.ReadPackedIntDelta(baseline.PlayerStateteamIndex, compressionModel);
         else
             PlayerStateteamIndex = baseline.PlayerStateteamIndex;
         if ((changeMask0 & (1 << 3)) != 0)
-            PlayerStatescore = reader.ReadPackedIntDelta(ref ctx, baseline.PlayerStatescore, compressionModel);
+            PlayerStatescore = reader.ReadPackedIntDelta(baseline.PlayerStatescore, compressionModel);
         else
             PlayerStatescore = baseline.PlayerStatescore;
         if ((changeMask0 & (1 << 4)) != 0)
-            PlayerStategameModeSystemInitialized = reader.ReadPackedUIntDelta(ref ctx, baseline.PlayerStategameModeSystemInitialized, compressionModel);
+            PlayerStategameModeSystemInitialized = reader.ReadPackedUIntDelta(baseline.PlayerStategameModeSystemInitialized, compressionModel);
         else
             PlayerStategameModeSystemInitialized = baseline.PlayerStategameModeSystemInitialized;
         if ((changeMask0 & (1 << 5)) != 0)
-            PlayerStatedisplayCountDown = reader.ReadPackedUIntDelta(ref ctx, baseline.PlayerStatedisplayCountDown, compressionModel);
+            PlayerStatedisplayCountDown = reader.ReadPackedUIntDelta(baseline.PlayerStatedisplayCountDown, compressionModel);
         else
             PlayerStatedisplayCountDown = baseline.PlayerStatedisplayCountDown;
         if ((changeMask0 & (1 << 6)) != 0)
-            PlayerStatecountDown = reader.ReadPackedIntDelta(ref ctx, baseline.PlayerStatecountDown, compressionModel);
+            PlayerStatecountDown = reader.ReadPackedIntDelta(baseline.PlayerStatecountDown, compressionModel);
         else
             PlayerStatecountDown = baseline.PlayerStatecountDown;
         if ((changeMask0 & (1 << 7)) != 0)
-            PlayerStatedisplayScoreBoard = reader.ReadPackedUIntDelta(ref ctx, baseline.PlayerStatedisplayScoreBoard, compressionModel);
+            PlayerStatedisplayScoreBoard = reader.ReadPackedUIntDelta(baseline.PlayerStatedisplayScoreBoard, compressionModel);
         else
             PlayerStatedisplayScoreBoard = baseline.PlayerStatedisplayScoreBoard;
         if ((changeMask0 & (1 << 8)) != 0)
-            PlayerStatedisplayGameScore = reader.ReadPackedUIntDelta(ref ctx, baseline.PlayerStatedisplayGameScore, compressionModel);
+            PlayerStatedisplayGameScore = reader.ReadPackedUIntDelta(baseline.PlayerStatedisplayGameScore, compressionModel);
         else
             PlayerStatedisplayGameScore = baseline.PlayerStatedisplayGameScore;
         if ((changeMask0 & (1 << 9)) != 0)
-            PlayerStatedisplayGameResult = reader.ReadPackedUIntDelta(ref ctx, baseline.PlayerStatedisplayGameResult, compressionModel);
+            PlayerStatedisplayGameResult = reader.ReadPackedUIntDelta(baseline.PlayerStatedisplayGameResult, compressionModel);
         else
             PlayerStatedisplayGameResult = baseline.PlayerStatedisplayGameResult;
         if ((changeMask0 & (1 << 10)) != 0)
         {
-            PlayerStategameResult.LengthInBytes = (ushort)reader.ReadPackedUIntDelta(ref ctx, (uint)baseline.PlayerStategameResult.LengthInBytes, compressionModel);
+            PlayerStategameResult.LengthInBytes = (ushort)reader.ReadPackedUIntDelta((uint)baseline.PlayerStategameResult.LengthInBytes, compressionModel);
             var PlayerStategameResultBaselineLength = (ushort)math.min((uint)PlayerStategameResult.LengthInBytes, baseline.PlayerStategameResult.LengthInBytes);
             for (int sb = 0; sb < PlayerStategameResultBaselineLength; ++sb)
             {
@@ -624,7 +624,7 @@ public struct PlayerStateSnapshotData : ISnapshotData<PlayerStateSnapshotData>
                     fixed (byte* b1 = &PlayerStategameResult.buffer.byte0000)
                     fixed (byte* b2 = &baseline.PlayerStategameResult.buffer.byte0000)
                     {
-                        b1[sb] = (byte)reader.ReadPackedUIntDelta(ref ctx, b2[sb], compressionModel);
+                        b1[sb] = (byte)reader.ReadPackedUIntDelta(b2[sb], compressionModel);
                     }
                 }
             }
@@ -634,7 +634,7 @@ public struct PlayerStateSnapshotData : ISnapshotData<PlayerStateSnapshotData>
                 {
                     fixed (byte* b = &PlayerStategameResult.buffer.byte0000)
                     {
-                        b[sb] = (byte)reader.ReadPackedUIntDelta(ref ctx, 0, compressionModel);
+                        b[sb] = (byte)reader.ReadPackedUIntDelta(0, compressionModel);
                     }
                 }
             }
@@ -642,14 +642,14 @@ public struct PlayerStateSnapshotData : ISnapshotData<PlayerStateSnapshotData>
         else
             PlayerStategameResult = baseline.PlayerStategameResult;
         if ((changeMask0 & (1 << 11)) != 0)
-            PlayerStatedisplayGoal = reader.ReadPackedUIntDelta(ref ctx, baseline.PlayerStatedisplayGoal, compressionModel);
+            PlayerStatedisplayGoal = reader.ReadPackedUIntDelta(baseline.PlayerStatedisplayGoal, compressionModel);
         else
             PlayerStatedisplayGoal = baseline.PlayerStatedisplayGoal;
         if ((changeMask0 & (1 << 12)) != 0)
         {
-            PlayerStategoalPositionX = reader.ReadPackedIntDelta(ref ctx, baseline.PlayerStategoalPositionX, compressionModel);
-            PlayerStategoalPositionY = reader.ReadPackedIntDelta(ref ctx, baseline.PlayerStategoalPositionY, compressionModel);
-            PlayerStategoalPositionZ = reader.ReadPackedIntDelta(ref ctx, baseline.PlayerStategoalPositionZ, compressionModel);
+            PlayerStategoalPositionX = reader.ReadPackedIntDelta(baseline.PlayerStategoalPositionX, compressionModel);
+            PlayerStategoalPositionY = reader.ReadPackedIntDelta(baseline.PlayerStategoalPositionY, compressionModel);
+            PlayerStategoalPositionZ = reader.ReadPackedIntDelta(baseline.PlayerStategoalPositionZ, compressionModel);
         }
         else
         {
@@ -658,24 +658,24 @@ public struct PlayerStateSnapshotData : ISnapshotData<PlayerStateSnapshotData>
             PlayerStategoalPositionZ = baseline.PlayerStategoalPositionZ;
         }
         if ((changeMask0 & (1 << 13)) != 0)
-            PlayerStategoalDefendersColor = reader.ReadPackedUIntDelta(ref ctx, baseline.PlayerStategoalDefendersColor, compressionModel);
+            PlayerStategoalDefendersColor = reader.ReadPackedUIntDelta(baseline.PlayerStategoalDefendersColor, compressionModel);
         else
             PlayerStategoalDefendersColor = baseline.PlayerStategoalDefendersColor;
         if ((changeMask0 & (1 << 14)) != 0)
-            PlayerStategoalAttackersColor = reader.ReadPackedUIntDelta(ref ctx, baseline.PlayerStategoalAttackersColor, compressionModel);
+            PlayerStategoalAttackersColor = reader.ReadPackedUIntDelta(baseline.PlayerStategoalAttackersColor, compressionModel);
         else
             PlayerStategoalAttackersColor = baseline.PlayerStategoalAttackersColor;
         if ((changeMask0 & (1 << 15)) != 0)
-            PlayerStategoalAttackers = reader.ReadPackedUIntDelta(ref ctx, baseline.PlayerStategoalAttackers, compressionModel);
+            PlayerStategoalAttackers = reader.ReadPackedUIntDelta(baseline.PlayerStategoalAttackers, compressionModel);
         else
             PlayerStategoalAttackers = baseline.PlayerStategoalAttackers;
         if ((changeMask0 & (1 << 16)) != 0)
-            PlayerStategoalDefenders = reader.ReadPackedUIntDelta(ref ctx, baseline.PlayerStategoalDefenders, compressionModel);
+            PlayerStategoalDefenders = reader.ReadPackedUIntDelta(baseline.PlayerStategoalDefenders, compressionModel);
         else
             PlayerStategoalDefenders = baseline.PlayerStategoalDefenders;
         if ((changeMask0 & (1 << 17)) != 0)
         {
-            PlayerStategoalString.LengthInBytes = (ushort)reader.ReadPackedUIntDelta(ref ctx, (uint)baseline.PlayerStategoalString.LengthInBytes, compressionModel);
+            PlayerStategoalString.LengthInBytes = (ushort)reader.ReadPackedUIntDelta((uint)baseline.PlayerStategoalString.LengthInBytes, compressionModel);
             var PlayerStategoalStringBaselineLength = (ushort)math.min((uint)PlayerStategoalString.LengthInBytes, baseline.PlayerStategoalString.LengthInBytes);
             for (int sb = 0; sb < PlayerStategoalStringBaselineLength; ++sb)
             {
@@ -684,7 +684,7 @@ public struct PlayerStateSnapshotData : ISnapshotData<PlayerStateSnapshotData>
                     fixed (byte* b1 = &PlayerStategoalString.buffer.byte0000)
                     fixed (byte* b2 = &baseline.PlayerStategoalString.buffer.byte0000)
                     {
-                        b1[sb] = (byte)reader.ReadPackedUIntDelta(ref ctx, b2[sb], compressionModel);
+                        b1[sb] = (byte)reader.ReadPackedUIntDelta(b2[sb], compressionModel);
                     }
                 }
             }
@@ -694,7 +694,7 @@ public struct PlayerStateSnapshotData : ISnapshotData<PlayerStateSnapshotData>
                 {
                     fixed (byte* b = &PlayerStategoalString.buffer.byte0000)
                     {
-                        b[sb] = (byte)reader.ReadPackedUIntDelta(ref ctx, 0, compressionModel);
+                        b[sb] = (byte)reader.ReadPackedUIntDelta(0, compressionModel);
                     }
                 }
             }
@@ -703,7 +703,7 @@ public struct PlayerStateSnapshotData : ISnapshotData<PlayerStateSnapshotData>
             PlayerStategoalString = baseline.PlayerStategoalString;
         if ((changeMask0 & (1 << 18)) != 0)
         {
-            PlayerStateactionString.LengthInBytes = (ushort)reader.ReadPackedUIntDelta(ref ctx, (uint)baseline.PlayerStateactionString.LengthInBytes, compressionModel);
+            PlayerStateactionString.LengthInBytes = (ushort)reader.ReadPackedUIntDelta((uint)baseline.PlayerStateactionString.LengthInBytes, compressionModel);
             var PlayerStateactionStringBaselineLength = (ushort)math.min((uint)PlayerStateactionString.LengthInBytes, baseline.PlayerStateactionString.LengthInBytes);
             for (int sb = 0; sb < PlayerStateactionStringBaselineLength; ++sb)
             {
@@ -712,7 +712,7 @@ public struct PlayerStateSnapshotData : ISnapshotData<PlayerStateSnapshotData>
                     fixed (byte* b1 = &PlayerStateactionString.buffer.byte0000)
                     fixed (byte* b2 = &baseline.PlayerStateactionString.buffer.byte0000)
                     {
-                        b1[sb] = (byte)reader.ReadPackedUIntDelta(ref ctx, b2[sb], compressionModel);
+                        b1[sb] = (byte)reader.ReadPackedUIntDelta(b2[sb], compressionModel);
                     }
                 }
             }
@@ -722,7 +722,7 @@ public struct PlayerStateSnapshotData : ISnapshotData<PlayerStateSnapshotData>
                 {
                     fixed (byte* b = &PlayerStateactionString.buffer.byte0000)
                     {
-                        b[sb] = (byte)reader.ReadPackedUIntDelta(ref ctx, 0, compressionModel);
+                        b[sb] = (byte)reader.ReadPackedUIntDelta(0, compressionModel);
                     }
                 }
             }
@@ -730,7 +730,7 @@ public struct PlayerStateSnapshotData : ISnapshotData<PlayerStateSnapshotData>
         else
             PlayerStateactionString = baseline.PlayerStateactionString;
         if ((changeMask0 & (1 << 19)) != 0)
-            PlayerStategoalCompletion = reader.ReadPackedIntDelta(ref ctx, baseline.PlayerStategoalCompletion, compressionModel);
+            PlayerStategoalCompletion = reader.ReadPackedIntDelta( baseline.PlayerStategoalCompletion, compressionModel);
         else
             PlayerStategoalCompletion = baseline.PlayerStategoalCompletion;
     }

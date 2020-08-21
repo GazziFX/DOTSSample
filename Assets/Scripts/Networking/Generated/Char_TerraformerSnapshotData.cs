@@ -1289,7 +1289,7 @@ public struct Char_TerraformerSnapshotData : ISnapshotData<Char_TerraformerSnaps
         Child3AbilityAbilityControlrequestDeactivate = (uint)predictor.PredictInt((int)Child3AbilityAbilityControlrequestDeactivate, (int)baseline1.Child3AbilityAbilityControlrequestDeactivate, (int)baseline2.Child3AbilityAbilityControlrequestDeactivate);
     }
 
-    public void Serialize(int networkId, ref Char_TerraformerSnapshotData baseline, DataStreamWriter writer, NetworkCompressionModel compressionModel)
+    public void Serialize(int networkId, ref Char_TerraformerSnapshotData baseline, ref DataStreamWriter writer, NetworkCompressionModel compressionModel)
     {
         changeMask0 = (CharacterInterpolatedDataPositionX != baseline.CharacterInterpolatedDataPositionX ||
                                           CharacterInterpolatedDataPositionY != baseline.CharacterInterpolatedDataPositionY ||
@@ -1576,23 +1576,23 @@ public struct Char_TerraformerSnapshotData : ISnapshotData<Char_TerraformerSnaps
         }
     }
 
-    public void Deserialize(uint tick, ref Char_TerraformerSnapshotData baseline, DataStreamReader reader, ref DataStreamReader.Context ctx,
+    public void Deserialize(uint tick, ref Char_TerraformerSnapshotData baseline, ref DataStreamReader reader,
         NetworkCompressionModel compressionModel)
     {
         this.tick = tick;
-        changeMask0 = reader.ReadPackedUIntDelta(ref ctx, baseline.changeMask0, compressionModel);
-        changeMask1 = reader.ReadPackedUIntDelta(ref ctx, baseline.changeMask1, compressionModel);
-        changeMask2 = reader.ReadPackedUIntDelta(ref ctx, baseline.changeMask2, compressionModel);
-        bool isPredicted = reader.ReadPackedUInt(ref ctx, compressionModel)!=0;
+        changeMask0 = reader.ReadPackedUIntDelta(baseline.changeMask0, compressionModel);
+        changeMask1 = reader.ReadPackedUIntDelta(baseline.changeMask1, compressionModel);
+        changeMask2 = reader.ReadPackedUIntDelta(baseline.changeMask2, compressionModel);
+        bool isPredicted = reader.ReadPackedUInt(compressionModel)!=0;
         if ((changeMask1 & (1 << 6)) != 0)
-            CharacterReplicatedDataheroTypeIndex = reader.ReadPackedIntDelta(ref ctx, baseline.CharacterReplicatedDataheroTypeIndex, compressionModel);
+            CharacterReplicatedDataheroTypeIndex = reader.ReadPackedIntDelta(baseline.CharacterReplicatedDataheroTypeIndex, compressionModel);
         else
             CharacterReplicatedDataheroTypeIndex = baseline.CharacterReplicatedDataheroTypeIndex;
         if ((changeMask1 & (1 << 7)) != 0)
         {
-            CharacterControllerGroundSupportDataSurfaceNormalX = reader.ReadPackedFloatDelta(ref ctx, baseline.CharacterControllerGroundSupportDataSurfaceNormalX, compressionModel);
-            CharacterControllerGroundSupportDataSurfaceNormalY = reader.ReadPackedFloatDelta(ref ctx, baseline.CharacterControllerGroundSupportDataSurfaceNormalY, compressionModel);
-            CharacterControllerGroundSupportDataSurfaceNormalZ = reader.ReadPackedFloatDelta(ref ctx, baseline.CharacterControllerGroundSupportDataSurfaceNormalZ, compressionModel);
+            CharacterControllerGroundSupportDataSurfaceNormalX = reader.ReadPackedFloatDelta(baseline.CharacterControllerGroundSupportDataSurfaceNormalX, compressionModel);
+            CharacterControllerGroundSupportDataSurfaceNormalY = reader.ReadPackedFloatDelta(baseline.CharacterControllerGroundSupportDataSurfaceNormalY, compressionModel);
+            CharacterControllerGroundSupportDataSurfaceNormalZ = reader.ReadPackedFloatDelta(baseline.CharacterControllerGroundSupportDataSurfaceNormalZ, compressionModel);
         }
         else
         {
@@ -1602,9 +1602,9 @@ public struct Char_TerraformerSnapshotData : ISnapshotData<Char_TerraformerSnaps
         }
         if ((changeMask1 & (1 << 8)) != 0)
         {
-            CharacterControllerGroundSupportDataSurfaceVelocityX = reader.ReadPackedFloatDelta(ref ctx, baseline.CharacterControllerGroundSupportDataSurfaceVelocityX, compressionModel);
-            CharacterControllerGroundSupportDataSurfaceVelocityY = reader.ReadPackedFloatDelta(ref ctx, baseline.CharacterControllerGroundSupportDataSurfaceVelocityY, compressionModel);
-            CharacterControllerGroundSupportDataSurfaceVelocityZ = reader.ReadPackedFloatDelta(ref ctx, baseline.CharacterControllerGroundSupportDataSurfaceVelocityZ, compressionModel);
+            CharacterControllerGroundSupportDataSurfaceVelocityX = reader.ReadPackedFloatDelta(baseline.CharacterControllerGroundSupportDataSurfaceVelocityX, compressionModel);
+            CharacterControllerGroundSupportDataSurfaceVelocityY = reader.ReadPackedFloatDelta(baseline.CharacterControllerGroundSupportDataSurfaceVelocityY, compressionModel);
+            CharacterControllerGroundSupportDataSurfaceVelocityZ = reader.ReadPackedFloatDelta(baseline.CharacterControllerGroundSupportDataSurfaceVelocityZ, compressionModel);
         }
         else
         {
@@ -1613,14 +1613,14 @@ public struct Char_TerraformerSnapshotData : ISnapshotData<Char_TerraformerSnaps
             CharacterControllerGroundSupportDataSurfaceVelocityZ = baseline.CharacterControllerGroundSupportDataSurfaceVelocityZ;
         }
         if ((changeMask1 & (1 << 9)) != 0)
-            CharacterControllerGroundSupportDataSupportedState = reader.ReadPackedIntDelta(ref ctx, baseline.CharacterControllerGroundSupportDataSupportedState, compressionModel);
+            CharacterControllerGroundSupportDataSupportedState = reader.ReadPackedIntDelta(baseline.CharacterControllerGroundSupportDataSupportedState, compressionModel);
         else
             CharacterControllerGroundSupportDataSupportedState = baseline.CharacterControllerGroundSupportDataSupportedState;
         if ((changeMask1 & (1 << 10)) != 0)
         {
-            CharacterControllerMoveResultMoveResultX = reader.ReadPackedFloatDelta(ref ctx, baseline.CharacterControllerMoveResultMoveResultX, compressionModel);
-            CharacterControllerMoveResultMoveResultY = reader.ReadPackedFloatDelta(ref ctx, baseline.CharacterControllerMoveResultMoveResultY, compressionModel);
-            CharacterControllerMoveResultMoveResultZ = reader.ReadPackedFloatDelta(ref ctx, baseline.CharacterControllerMoveResultMoveResultZ, compressionModel);
+            CharacterControllerMoveResultMoveResultX = reader.ReadPackedFloatDelta(baseline.CharacterControllerMoveResultMoveResultX, compressionModel);
+            CharacterControllerMoveResultMoveResultY = reader.ReadPackedFloatDelta(baseline.CharacterControllerMoveResultMoveResultY, compressionModel);
+            CharacterControllerMoveResultMoveResultZ = reader.ReadPackedFloatDelta(baseline.CharacterControllerMoveResultMoveResultZ, compressionModel);
         }
         else
         {
@@ -1630,9 +1630,9 @@ public struct Char_TerraformerSnapshotData : ISnapshotData<Char_TerraformerSnaps
         }
         if ((changeMask1 & (1 << 11)) != 0)
         {
-            CharacterControllerVelocityVelocityX = reader.ReadPackedFloatDelta(ref ctx, baseline.CharacterControllerVelocityVelocityX, compressionModel);
-            CharacterControllerVelocityVelocityY = reader.ReadPackedFloatDelta(ref ctx, baseline.CharacterControllerVelocityVelocityY, compressionModel);
-            CharacterControllerVelocityVelocityZ = reader.ReadPackedFloatDelta(ref ctx, baseline.CharacterControllerVelocityVelocityZ, compressionModel);
+            CharacterControllerVelocityVelocityX = reader.ReadPackedFloatDelta(baseline.CharacterControllerVelocityVelocityX, compressionModel);
+            CharacterControllerVelocityVelocityY = reader.ReadPackedFloatDelta(baseline.CharacterControllerVelocityVelocityY, compressionModel);
+            CharacterControllerVelocityVelocityZ = reader.ReadPackedFloatDelta(baseline.CharacterControllerVelocityVelocityZ, compressionModel);
         }
         else
         {
@@ -1641,112 +1641,112 @@ public struct Char_TerraformerSnapshotData : ISnapshotData<Char_TerraformerSnaps
             CharacterControllerVelocityVelocityZ = baseline.CharacterControllerVelocityVelocityZ;
         }
         if ((changeMask1 & (1 << 12)) != 0)
-            HealthStateDatahealth = reader.ReadPackedIntDelta(ref ctx, baseline.HealthStateDatahealth, compressionModel);
+            HealthStateDatahealth = reader.ReadPackedIntDelta(baseline.HealthStateDatahealth, compressionModel);
         else
             HealthStateDatahealth = baseline.HealthStateDatahealth;
         if ((changeMask1 & (1 << 13)) != 0)
-            InventoryStateactiveSlot = reader.ReadPackedIntDelta(ref ctx, baseline.InventoryStateactiveSlot, compressionModel);
+            InventoryStateactiveSlot = reader.ReadPackedIntDelta(baseline.InventoryStateactiveSlot, compressionModel);
         else
             InventoryStateactiveSlot = baseline.InventoryStateactiveSlot;
         if ((changeMask1 & (1 << 14)) != 0)
-            PlayerOwnerPlayerIdValue = reader.ReadPackedIntDelta(ref ctx, baseline.PlayerOwnerPlayerIdValue, compressionModel);
+            PlayerOwnerPlayerIdValue = reader.ReadPackedIntDelta(baseline.PlayerOwnerPlayerIdValue, compressionModel);
         else
             PlayerOwnerPlayerIdValue = baseline.PlayerOwnerPlayerIdValue;
         if ((changeMask1 & (1 << 15)) != 0)
-            PlayerControlledStateresetCommandTick = reader.ReadPackedIntDelta(ref ctx, baseline.PlayerControlledStateresetCommandTick, compressionModel);
+            PlayerControlledStateresetCommandTick = reader.ReadPackedIntDelta(baseline.PlayerControlledStateresetCommandTick, compressionModel);
         else
             PlayerControlledStateresetCommandTick = baseline.PlayerControlledStateresetCommandTick;
         if ((changeMask1 & (1 << 16)) != 0)
-            PlayerControlledStateresetCommandLookYaw = reader.ReadPackedIntDelta(ref ctx, baseline.PlayerControlledStateresetCommandLookYaw, compressionModel);
+            PlayerControlledStateresetCommandLookYaw = reader.ReadPackedIntDelta(baseline.PlayerControlledStateresetCommandLookYaw, compressionModel);
         else
             PlayerControlledStateresetCommandLookYaw = baseline.PlayerControlledStateresetCommandLookYaw;
         if ((changeMask1 & (1 << 17)) != 0)
-            PlayerControlledStateresetCommandLookPitch = reader.ReadPackedIntDelta(ref ctx, baseline.PlayerControlledStateresetCommandLookPitch, compressionModel);
+            PlayerControlledStateresetCommandLookPitch = reader.ReadPackedIntDelta(baseline.PlayerControlledStateresetCommandLookPitch, compressionModel);
         else
             PlayerControlledStateresetCommandLookPitch = baseline.PlayerControlledStateresetCommandLookPitch;
         if ((changeMask1 & (1 << 18)) != 0)
-            Child0AbilityAbilityControlbehaviorState = reader.ReadPackedIntDelta(ref ctx, baseline.Child0AbilityAbilityControlbehaviorState, compressionModel);
+            Child0AbilityAbilityControlbehaviorState = reader.ReadPackedIntDelta(baseline.Child0AbilityAbilityControlbehaviorState, compressionModel);
         else
             Child0AbilityAbilityControlbehaviorState = baseline.Child0AbilityAbilityControlbehaviorState;
         if ((changeMask1 & (1 << 19)) != 0)
-            Child0AbilityAbilityControlrequestDeactivate = reader.ReadPackedUIntDelta(ref ctx, baseline.Child0AbilityAbilityControlrequestDeactivate, compressionModel);
+            Child0AbilityAbilityControlrequestDeactivate = reader.ReadPackedUIntDelta(baseline.Child0AbilityAbilityControlrequestDeactivate, compressionModel);
         else
             Child0AbilityAbilityControlrequestDeactivate = baseline.Child0AbilityAbilityControlrequestDeactivate;
         if ((changeMask1 & (1 << 20)) != 0)
-            Child0AbilityMovementInterpolatedStatecharLocoState = reader.ReadPackedIntDelta(ref ctx, baseline.Child0AbilityMovementInterpolatedStatecharLocoState, compressionModel);
+            Child0AbilityMovementInterpolatedStatecharLocoState = reader.ReadPackedIntDelta(baseline.Child0AbilityMovementInterpolatedStatecharLocoState, compressionModel);
         else
             Child0AbilityMovementInterpolatedStatecharLocoState = baseline.Child0AbilityMovementInterpolatedStatecharLocoState;
         if ((changeMask1 & (1 << 21)) != 0)
-            Child0AbilityMovementInterpolatedStatecharLocoTick = reader.ReadPackedIntDelta(ref ctx, baseline.Child0AbilityMovementInterpolatedStatecharLocoTick, compressionModel);
+            Child0AbilityMovementInterpolatedStatecharLocoTick = reader.ReadPackedIntDelta(baseline.Child0AbilityMovementInterpolatedStatecharLocoTick, compressionModel);
         else
             Child0AbilityMovementInterpolatedStatecharLocoTick = baseline.Child0AbilityMovementInterpolatedStatecharLocoTick;
         if ((changeMask1 & (1 << 22)) != 0)
-            Child0AbilityMovementInterpolatedStatecrouching = reader.ReadPackedUIntDelta(ref ctx, baseline.Child0AbilityMovementInterpolatedStatecrouching, compressionModel);
+            Child0AbilityMovementInterpolatedStatecrouching = reader.ReadPackedUIntDelta(baseline.Child0AbilityMovementInterpolatedStatecrouching, compressionModel);
         else
             Child0AbilityMovementInterpolatedStatecrouching = baseline.Child0AbilityMovementInterpolatedStatecrouching;
         if ((changeMask1 & (1 << 23)) != 0)
-            Child0AbilityMovementPredictedStatelocoState = reader.ReadPackedIntDelta(ref ctx, baseline.Child0AbilityMovementPredictedStatelocoState, compressionModel);
+            Child0AbilityMovementPredictedStatelocoState = reader.ReadPackedIntDelta(baseline.Child0AbilityMovementPredictedStatelocoState, compressionModel);
         else
             Child0AbilityMovementPredictedStatelocoState = baseline.Child0AbilityMovementPredictedStatelocoState;
         if ((changeMask1 & (1 << 24)) != 0)
-            Child0AbilityMovementPredictedStatelocoStartTick = reader.ReadPackedIntDelta(ref ctx, baseline.Child0AbilityMovementPredictedStatelocoStartTick, compressionModel);
+            Child0AbilityMovementPredictedStatelocoStartTick = reader.ReadPackedIntDelta(baseline.Child0AbilityMovementPredictedStatelocoStartTick, compressionModel);
         else
             Child0AbilityMovementPredictedStatelocoStartTick = baseline.Child0AbilityMovementPredictedStatelocoStartTick;
         if ((changeMask1 & (1 << 25)) != 0)
-            Child0AbilityMovementPredictedStatejumpCount = reader.ReadPackedIntDelta(ref ctx, baseline.Child0AbilityMovementPredictedStatejumpCount, compressionModel);
+            Child0AbilityMovementPredictedStatejumpCount = reader.ReadPackedIntDelta(baseline.Child0AbilityMovementPredictedStatejumpCount, compressionModel);
         else
             Child0AbilityMovementPredictedStatejumpCount = baseline.Child0AbilityMovementPredictedStatejumpCount;
         if ((changeMask1 & (1 << 26)) != 0)
-            Child0AbilityMovementPredictedStatecrouching = reader.ReadPackedUIntDelta(ref ctx, baseline.Child0AbilityMovementPredictedStatecrouching, compressionModel);
+            Child0AbilityMovementPredictedStatecrouching = reader.ReadPackedUIntDelta(baseline.Child0AbilityMovementPredictedStatecrouching, compressionModel);
         else
             Child0AbilityMovementPredictedStatecrouching = baseline.Child0AbilityMovementPredictedStatecrouching;
         if ((changeMask1 & (1 << 27)) != 0)
-            Child1AbilityAbilityControlbehaviorState = reader.ReadPackedIntDelta(ref ctx, baseline.Child1AbilityAbilityControlbehaviorState, compressionModel);
+            Child1AbilityAbilityControlbehaviorState = reader.ReadPackedIntDelta(baseline.Child1AbilityAbilityControlbehaviorState, compressionModel);
         else
             Child1AbilityAbilityControlbehaviorState = baseline.Child1AbilityAbilityControlbehaviorState;
         if ((changeMask1 & (1 << 28)) != 0)
-            Child1AbilityAbilityControlrequestDeactivate = reader.ReadPackedUIntDelta(ref ctx, baseline.Child1AbilityAbilityControlrequestDeactivate, compressionModel);
+            Child1AbilityAbilityControlrequestDeactivate = reader.ReadPackedUIntDelta(baseline.Child1AbilityAbilityControlrequestDeactivate, compressionModel);
         else
             Child1AbilityAbilityControlrequestDeactivate = baseline.Child1AbilityAbilityControlrequestDeactivate;
         if ((changeMask1 & (1 << 29)) != 0)
-            Child1AbilitySprintPredictedStateactive = reader.ReadPackedIntDelta(ref ctx, baseline.Child1AbilitySprintPredictedStateactive, compressionModel);
+            Child1AbilitySprintPredictedStateactive = reader.ReadPackedIntDelta(baseline.Child1AbilitySprintPredictedStateactive, compressionModel);
         else
             Child1AbilitySprintPredictedStateactive = baseline.Child1AbilitySprintPredictedStateactive;
         if ((changeMask1 & (1 << 30)) != 0)
-            Child1AbilitySprintPredictedStateterminating = reader.ReadPackedIntDelta(ref ctx, baseline.Child1AbilitySprintPredictedStateterminating, compressionModel);
+            Child1AbilitySprintPredictedStateterminating = reader.ReadPackedIntDelta(baseline.Child1AbilitySprintPredictedStateterminating, compressionModel);
         else
             Child1AbilitySprintPredictedStateterminating = baseline.Child1AbilitySprintPredictedStateterminating;
         if ((changeMask1 & (1 << 31)) != 0)
-            Child1AbilitySprintPredictedStateterminateStartTick = reader.ReadPackedIntDelta(ref ctx, baseline.Child1AbilitySprintPredictedStateterminateStartTick, compressionModel);
+            Child1AbilitySprintPredictedStateterminateStartTick = reader.ReadPackedIntDelta(baseline.Child1AbilitySprintPredictedStateterminateStartTick, compressionModel);
         else
             Child1AbilitySprintPredictedStateterminateStartTick = baseline.Child1AbilitySprintPredictedStateterminateStartTick;
         if ((changeMask2 & (1 << 0)) != 0)
-            Child2AbilityAbilityControlbehaviorState = reader.ReadPackedIntDelta(ref ctx, baseline.Child2AbilityAbilityControlbehaviorState, compressionModel);
+            Child2AbilityAbilityControlbehaviorState = reader.ReadPackedIntDelta(baseline.Child2AbilityAbilityControlbehaviorState, compressionModel);
         else
             Child2AbilityAbilityControlbehaviorState = baseline.Child2AbilityAbilityControlbehaviorState;
         if ((changeMask2 & (1 << 1)) != 0)
-            Child2AbilityAbilityControlrequestDeactivate = reader.ReadPackedUIntDelta(ref ctx, baseline.Child2AbilityAbilityControlrequestDeactivate, compressionModel);
+            Child2AbilityAbilityControlrequestDeactivate = reader.ReadPackedUIntDelta(baseline.Child2AbilityAbilityControlrequestDeactivate, compressionModel);
         else
             Child2AbilityAbilityControlrequestDeactivate = baseline.Child2AbilityAbilityControlrequestDeactivate;
         if ((changeMask2 & (1 << 2)) != 0)
-            Child3AbilityAbilityControlbehaviorState = reader.ReadPackedIntDelta(ref ctx, baseline.Child3AbilityAbilityControlbehaviorState, compressionModel);
+            Child3AbilityAbilityControlbehaviorState = reader.ReadPackedIntDelta(baseline.Child3AbilityAbilityControlbehaviorState, compressionModel);
         else
             Child3AbilityAbilityControlbehaviorState = baseline.Child3AbilityAbilityControlbehaviorState;
         if ((changeMask2 & (1 << 3)) != 0)
-            Child3AbilityAbilityControlrequestDeactivate = reader.ReadPackedUIntDelta(ref ctx, baseline.Child3AbilityAbilityControlrequestDeactivate, compressionModel);
+            Child3AbilityAbilityControlrequestDeactivate = reader.ReadPackedUIntDelta(baseline.Child3AbilityAbilityControlrequestDeactivate, compressionModel);
         else
             Child3AbilityAbilityControlrequestDeactivate = baseline.Child3AbilityAbilityControlrequestDeactivate;
         if (isPredicted)
         {
             if ((changeMask0 & (1 << 31)) != 0)
-                CharacterPredictedDatatick = reader.ReadPackedIntDelta(ref ctx, baseline.CharacterPredictedDatatick, compressionModel);
+                CharacterPredictedDatatick = reader.ReadPackedIntDelta(baseline.CharacterPredictedDatatick, compressionModel);
             else
                 CharacterPredictedDatatick = baseline.CharacterPredictedDatatick;
             if ((changeMask1 & (1 << 0)) != 0)
             {
-                CharacterPredictedDatapositionX = reader.ReadPackedFloatDelta(ref ctx, baseline.CharacterPredictedDatapositionX, compressionModel);
-                CharacterPredictedDatapositionY = reader.ReadPackedFloatDelta(ref ctx, baseline.CharacterPredictedDatapositionY, compressionModel);
-                CharacterPredictedDatapositionZ = reader.ReadPackedFloatDelta(ref ctx, baseline.CharacterPredictedDatapositionZ, compressionModel);
+                CharacterPredictedDatapositionX = reader.ReadPackedFloatDelta(baseline.CharacterPredictedDatapositionX, compressionModel);
+                CharacterPredictedDatapositionY = reader.ReadPackedFloatDelta(baseline.CharacterPredictedDatapositionY, compressionModel);
+                CharacterPredictedDatapositionZ = reader.ReadPackedFloatDelta(baseline.CharacterPredictedDatapositionZ, compressionModel);
             }
             else
             {
@@ -1756,9 +1756,9 @@ public struct Char_TerraformerSnapshotData : ISnapshotData<Char_TerraformerSnaps
             }
             if ((changeMask1 & (1 << 1)) != 0)
             {
-                CharacterPredictedDatavelocityX = reader.ReadPackedFloatDelta(ref ctx, baseline.CharacterPredictedDatavelocityX, compressionModel);
-                CharacterPredictedDatavelocityY = reader.ReadPackedFloatDelta(ref ctx, baseline.CharacterPredictedDatavelocityY, compressionModel);
-                CharacterPredictedDatavelocityZ = reader.ReadPackedFloatDelta(ref ctx, baseline.CharacterPredictedDatavelocityZ, compressionModel);
+                CharacterPredictedDatavelocityX = reader.ReadPackedFloatDelta(baseline.CharacterPredictedDatavelocityX, compressionModel);
+                CharacterPredictedDatavelocityY = reader.ReadPackedFloatDelta(baseline.CharacterPredictedDatavelocityY, compressionModel);
+                CharacterPredictedDatavelocityZ = reader.ReadPackedFloatDelta(baseline.CharacterPredictedDatavelocityZ, compressionModel);
             }
             else
             {
@@ -1767,22 +1767,22 @@ public struct Char_TerraformerSnapshotData : ISnapshotData<Char_TerraformerSnaps
                 CharacterPredictedDatavelocityZ = baseline.CharacterPredictedDatavelocityZ;
             }
             if ((changeMask1 & (1 << 2)) != 0)
-                CharacterPredictedDatasprinting = reader.ReadPackedUIntDelta(ref ctx, baseline.CharacterPredictedDatasprinting, compressionModel);
+                CharacterPredictedDatasprinting = reader.ReadPackedUIntDelta(baseline.CharacterPredictedDatasprinting, compressionModel);
             else
                 CharacterPredictedDatasprinting = baseline.CharacterPredictedDatasprinting;
             if ((changeMask1 & (1 << 3)) != 0)
-                CharacterPredictedDatacameraProfile = reader.ReadPackedIntDelta(ref ctx, baseline.CharacterPredictedDatacameraProfile, compressionModel);
+                CharacterPredictedDatacameraProfile = reader.ReadPackedIntDelta(baseline.CharacterPredictedDatacameraProfile, compressionModel);
             else
                 CharacterPredictedDatacameraProfile = baseline.CharacterPredictedDatacameraProfile;
             if ((changeMask1 & (1 << 4)) != 0)
-                CharacterPredictedDatadamageTick = reader.ReadPackedIntDelta(ref ctx, baseline.CharacterPredictedDatadamageTick, compressionModel);
+                CharacterPredictedDatadamageTick = reader.ReadPackedIntDelta(baseline.CharacterPredictedDatadamageTick, compressionModel);
             else
                 CharacterPredictedDatadamageTick = baseline.CharacterPredictedDatadamageTick;
             if ((changeMask1 & (1 << 5)) != 0)
             {
-                CharacterPredictedDatadamageDirectionX = reader.ReadPackedIntDelta(ref ctx, baseline.CharacterPredictedDatadamageDirectionX, compressionModel);
-                CharacterPredictedDatadamageDirectionY = reader.ReadPackedIntDelta(ref ctx, baseline.CharacterPredictedDatadamageDirectionY, compressionModel);
-                CharacterPredictedDatadamageDirectionZ = reader.ReadPackedIntDelta(ref ctx, baseline.CharacterPredictedDatadamageDirectionZ, compressionModel);
+                CharacterPredictedDatadamageDirectionX = reader.ReadPackedIntDelta(baseline.CharacterPredictedDatadamageDirectionX, compressionModel);
+                CharacterPredictedDatadamageDirectionY = reader.ReadPackedIntDelta(baseline.CharacterPredictedDatadamageDirectionY, compressionModel);
+                CharacterPredictedDatadamageDirectionZ = reader.ReadPackedIntDelta(baseline.CharacterPredictedDatadamageDirectionZ, compressionModel);
             }
             else
             {
@@ -1795,9 +1795,9 @@ public struct Char_TerraformerSnapshotData : ISnapshotData<Char_TerraformerSnaps
         {
             if ((changeMask0 & (1 << 0)) != 0)
             {
-                CharacterInterpolatedDataPositionX = reader.ReadPackedIntDelta(ref ctx, baseline.CharacterInterpolatedDataPositionX, compressionModel);
-                CharacterInterpolatedDataPositionY = reader.ReadPackedIntDelta(ref ctx, baseline.CharacterInterpolatedDataPositionY, compressionModel);
-                CharacterInterpolatedDataPositionZ = reader.ReadPackedIntDelta(ref ctx, baseline.CharacterInterpolatedDataPositionZ, compressionModel);
+                CharacterInterpolatedDataPositionX = reader.ReadPackedIntDelta(baseline.CharacterInterpolatedDataPositionX, compressionModel);
+                CharacterInterpolatedDataPositionY = reader.ReadPackedIntDelta(baseline.CharacterInterpolatedDataPositionY, compressionModel);
+                CharacterInterpolatedDataPositionZ = reader.ReadPackedIntDelta(baseline.CharacterInterpolatedDataPositionZ, compressionModel);
             }
             else
             {
@@ -1806,65 +1806,65 @@ public struct Char_TerraformerSnapshotData : ISnapshotData<Char_TerraformerSnaps
                 CharacterInterpolatedDataPositionZ = baseline.CharacterInterpolatedDataPositionZ;
             }
             if ((changeMask0 & (1 << 1)) != 0)
-                CharacterInterpolatedDatarotation = reader.ReadPackedIntDelta(ref ctx, baseline.CharacterInterpolatedDatarotation, compressionModel);
+                CharacterInterpolatedDatarotation = reader.ReadPackedIntDelta(baseline.CharacterInterpolatedDatarotation, compressionModel);
             else
                 CharacterInterpolatedDatarotation = baseline.CharacterInterpolatedDatarotation;
             if ((changeMask0 & (1 << 2)) != 0)
-                CharacterInterpolatedDataaimYaw = reader.ReadPackedIntDelta(ref ctx, baseline.CharacterInterpolatedDataaimYaw, compressionModel);
+                CharacterInterpolatedDataaimYaw = reader.ReadPackedIntDelta(baseline.CharacterInterpolatedDataaimYaw, compressionModel);
             else
                 CharacterInterpolatedDataaimYaw = baseline.CharacterInterpolatedDataaimYaw;
             if ((changeMask0 & (1 << 3)) != 0)
-                CharacterInterpolatedDataaimPitch = reader.ReadPackedIntDelta(ref ctx, baseline.CharacterInterpolatedDataaimPitch, compressionModel);
+                CharacterInterpolatedDataaimPitch = reader.ReadPackedIntDelta(baseline.CharacterInterpolatedDataaimPitch, compressionModel);
             else
                 CharacterInterpolatedDataaimPitch = baseline.CharacterInterpolatedDataaimPitch;
             if ((changeMask0 & (1 << 4)) != 0)
-                CharacterInterpolatedDatamoveYaw = reader.ReadPackedIntDelta(ref ctx, baseline.CharacterInterpolatedDatamoveYaw, compressionModel);
+                CharacterInterpolatedDatamoveYaw = reader.ReadPackedIntDelta(baseline.CharacterInterpolatedDatamoveYaw, compressionModel);
             else
                 CharacterInterpolatedDatamoveYaw = baseline.CharacterInterpolatedDatamoveYaw;
             if ((changeMask0 & (1 << 5)) != 0)
-                CharacterInterpolatedDatacharAction = reader.ReadPackedIntDelta(ref ctx, baseline.CharacterInterpolatedDatacharAction, compressionModel);
+                CharacterInterpolatedDatacharAction = reader.ReadPackedIntDelta(baseline.CharacterInterpolatedDatacharAction, compressionModel);
             else
                 CharacterInterpolatedDatacharAction = baseline.CharacterInterpolatedDatacharAction;
             if ((changeMask0 & (1 << 6)) != 0)
-                CharacterInterpolatedDatacharActionTick = reader.ReadPackedIntDelta(ref ctx, baseline.CharacterInterpolatedDatacharActionTick, compressionModel);
+                CharacterInterpolatedDatacharActionTick = reader.ReadPackedIntDelta(baseline.CharacterInterpolatedDatacharActionTick, compressionModel);
             else
                 CharacterInterpolatedDatacharActionTick = baseline.CharacterInterpolatedDatacharActionTick;
             if ((changeMask0 & (1 << 7)) != 0)
-                CharacterInterpolatedDatadamageTick = reader.ReadPackedIntDelta(ref ctx, baseline.CharacterInterpolatedDatadamageTick, compressionModel);
+                CharacterInterpolatedDatadamageTick = reader.ReadPackedIntDelta(baseline.CharacterInterpolatedDatadamageTick, compressionModel);
             else
                 CharacterInterpolatedDatadamageTick = baseline.CharacterInterpolatedDatadamageTick;
             if ((changeMask0 & (1 << 8)) != 0)
-                CharacterInterpolatedDatadamageDirection = reader.ReadPackedIntDelta(ref ctx, baseline.CharacterInterpolatedDatadamageDirection, compressionModel);
+                CharacterInterpolatedDatadamageDirection = reader.ReadPackedIntDelta(baseline.CharacterInterpolatedDatadamageDirection, compressionModel);
             else
                 CharacterInterpolatedDatadamageDirection = baseline.CharacterInterpolatedDatadamageDirection;
             if ((changeMask0 & (1 << 9)) != 0)
-                CharacterInterpolatedDatasprinting = reader.ReadPackedUIntDelta(ref ctx, baseline.CharacterInterpolatedDatasprinting, compressionModel);
+                CharacterInterpolatedDatasprinting = reader.ReadPackedUIntDelta(baseline.CharacterInterpolatedDatasprinting, compressionModel);
             else
                 CharacterInterpolatedDatasprinting = baseline.CharacterInterpolatedDatasprinting;
             if ((changeMask0 & (1 << 10)) != 0)
-                CharacterInterpolatedDatasprintWeight = reader.ReadPackedIntDelta(ref ctx, baseline.CharacterInterpolatedDatasprintWeight, compressionModel);
+                CharacterInterpolatedDatasprintWeight = reader.ReadPackedIntDelta(baseline.CharacterInterpolatedDatasprintWeight, compressionModel);
             else
                 CharacterInterpolatedDatasprintWeight = baseline.CharacterInterpolatedDatasprintWeight;
             if ((changeMask0 & (1 << 11)) != 0)
-                CharacterInterpolatedDatacrouchWeight = reader.ReadPackedIntDelta(ref ctx, baseline.CharacterInterpolatedDatacrouchWeight, compressionModel);
+                CharacterInterpolatedDatacrouchWeight = reader.ReadPackedIntDelta(baseline.CharacterInterpolatedDatacrouchWeight, compressionModel);
             else
                 CharacterInterpolatedDatacrouchWeight = baseline.CharacterInterpolatedDatacrouchWeight;
             if ((changeMask0 & (1 << 12)) != 0)
-                CharacterInterpolatedDataselectorTargetSource = reader.ReadPackedIntDelta(ref ctx, baseline.CharacterInterpolatedDataselectorTargetSource, compressionModel);
+                CharacterInterpolatedDataselectorTargetSource = reader.ReadPackedIntDelta(baseline.CharacterInterpolatedDataselectorTargetSource, compressionModel);
             else
                 CharacterInterpolatedDataselectorTargetSource = baseline.CharacterInterpolatedDataselectorTargetSource;
             if ((changeMask0 & (1 << 13)) != 0)
-                CharacterInterpolatedDatamoveAngleLocal = reader.ReadPackedIntDelta(ref ctx, baseline.CharacterInterpolatedDatamoveAngleLocal, compressionModel);
+                CharacterInterpolatedDatamoveAngleLocal = reader.ReadPackedIntDelta(baseline.CharacterInterpolatedDatamoveAngleLocal, compressionModel);
             else
                 CharacterInterpolatedDatamoveAngleLocal = baseline.CharacterInterpolatedDatamoveAngleLocal;
             if ((changeMask0 & (1 << 14)) != 0)
-                CharacterInterpolatedDatashootPoseWeight = reader.ReadPackedIntDelta(ref ctx, baseline.CharacterInterpolatedDatashootPoseWeight, compressionModel);
+                CharacterInterpolatedDatashootPoseWeight = reader.ReadPackedIntDelta(baseline.CharacterInterpolatedDatashootPoseWeight, compressionModel);
             else
                 CharacterInterpolatedDatashootPoseWeight = baseline.CharacterInterpolatedDatashootPoseWeight;
             if ((changeMask0 & (1 << 15)) != 0)
             {
-                CharacterInterpolatedDatalocomotionVectorX = reader.ReadPackedIntDelta(ref ctx, baseline.CharacterInterpolatedDatalocomotionVectorX, compressionModel);
-                CharacterInterpolatedDatalocomotionVectorY = reader.ReadPackedIntDelta(ref ctx, baseline.CharacterInterpolatedDatalocomotionVectorY, compressionModel);
+                CharacterInterpolatedDatalocomotionVectorX = reader.ReadPackedIntDelta(baseline.CharacterInterpolatedDatalocomotionVectorX, compressionModel);
+                CharacterInterpolatedDatalocomotionVectorY = reader.ReadPackedIntDelta(baseline.CharacterInterpolatedDatalocomotionVectorY, compressionModel);
             }
             else
             {
@@ -1872,49 +1872,49 @@ public struct Char_TerraformerSnapshotData : ISnapshotData<Char_TerraformerSnaps
                 CharacterInterpolatedDatalocomotionVectorY = baseline.CharacterInterpolatedDatalocomotionVectorY;
             }
             if ((changeMask0 & (1 << 16)) != 0)
-                CharacterInterpolatedDatalocomotionPhase = reader.ReadPackedIntDelta(ref ctx, baseline.CharacterInterpolatedDatalocomotionPhase, compressionModel);
+                CharacterInterpolatedDatalocomotionPhase = reader.ReadPackedIntDelta(baseline.CharacterInterpolatedDatalocomotionPhase, compressionModel);
             else
                 CharacterInterpolatedDatalocomotionPhase = baseline.CharacterInterpolatedDatalocomotionPhase;
             if ((changeMask0 & (1 << 17)) != 0)
-                CharacterInterpolatedDatabanking = reader.ReadPackedIntDelta(ref ctx, baseline.CharacterInterpolatedDatabanking, compressionModel);
+                CharacterInterpolatedDatabanking = reader.ReadPackedIntDelta(baseline.CharacterInterpolatedDatabanking, compressionModel);
             else
                 CharacterInterpolatedDatabanking = baseline.CharacterInterpolatedDatabanking;
             if ((changeMask0 & (1 << 18)) != 0)
-                CharacterInterpolatedDatalandAnticWeight = reader.ReadPackedIntDelta(ref ctx, baseline.CharacterInterpolatedDatalandAnticWeight, compressionModel);
+                CharacterInterpolatedDatalandAnticWeight = reader.ReadPackedIntDelta(baseline.CharacterInterpolatedDatalandAnticWeight, compressionModel);
             else
                 CharacterInterpolatedDatalandAnticWeight = baseline.CharacterInterpolatedDatalandAnticWeight;
             if ((changeMask0 & (1 << 19)) != 0)
-                CharacterInterpolatedDataturnStartAngle = reader.ReadPackedIntDelta(ref ctx, baseline.CharacterInterpolatedDataturnStartAngle, compressionModel);
+                CharacterInterpolatedDataturnStartAngle = reader.ReadPackedIntDelta(baseline.CharacterInterpolatedDataturnStartAngle, compressionModel);
             else
                 CharacterInterpolatedDataturnStartAngle = baseline.CharacterInterpolatedDataturnStartAngle;
             if ((changeMask0 & (1 << 20)) != 0)
-                CharacterInterpolatedDataturnDirection = reader.ReadPackedIntDelta(ref ctx, baseline.CharacterInterpolatedDataturnDirection, compressionModel);
+                CharacterInterpolatedDataturnDirection = reader.ReadPackedIntDelta(baseline.CharacterInterpolatedDataturnDirection, compressionModel);
             else
                 CharacterInterpolatedDataturnDirection = baseline.CharacterInterpolatedDataturnDirection;
             if ((changeMask0 & (1 << 21)) != 0)
-                CharacterInterpolatedDatasquashTime = reader.ReadPackedIntDelta(ref ctx, baseline.CharacterInterpolatedDatasquashTime, compressionModel);
+                CharacterInterpolatedDatasquashTime = reader.ReadPackedIntDelta(baseline.CharacterInterpolatedDatasquashTime, compressionModel);
             else
                 CharacterInterpolatedDatasquashTime = baseline.CharacterInterpolatedDatasquashTime;
             if ((changeMask0 & (1 << 22)) != 0)
-                CharacterInterpolatedDatasquashWeight = reader.ReadPackedIntDelta(ref ctx, baseline.CharacterInterpolatedDatasquashWeight, compressionModel);
+                CharacterInterpolatedDatasquashWeight = reader.ReadPackedIntDelta(baseline.CharacterInterpolatedDatasquashWeight, compressionModel);
             else
                 CharacterInterpolatedDatasquashWeight = baseline.CharacterInterpolatedDatasquashWeight;
             if ((changeMask0 & (1 << 23)) != 0)
-                CharacterInterpolatedDatainAirTime = reader.ReadPackedIntDelta(ref ctx, baseline.CharacterInterpolatedDatainAirTime, compressionModel);
+                CharacterInterpolatedDatainAirTime = reader.ReadPackedIntDelta(baseline.CharacterInterpolatedDatainAirTime, compressionModel);
             else
                 CharacterInterpolatedDatainAirTime = baseline.CharacterInterpolatedDatainAirTime;
             if ((changeMask0 & (1 << 24)) != 0)
-                CharacterInterpolatedDatajumpTime = reader.ReadPackedIntDelta(ref ctx, baseline.CharacterInterpolatedDatajumpTime, compressionModel);
+                CharacterInterpolatedDatajumpTime = reader.ReadPackedIntDelta(baseline.CharacterInterpolatedDatajumpTime, compressionModel);
             else
                 CharacterInterpolatedDatajumpTime = baseline.CharacterInterpolatedDatajumpTime;
             if ((changeMask0 & (1 << 25)) != 0)
-                CharacterInterpolatedDatasimpleTime = reader.ReadPackedIntDelta(ref ctx, baseline.CharacterInterpolatedDatasimpleTime, compressionModel);
+                CharacterInterpolatedDatasimpleTime = reader.ReadPackedIntDelta(baseline.CharacterInterpolatedDatasimpleTime, compressionModel);
             else
                 CharacterInterpolatedDatasimpleTime = baseline.CharacterInterpolatedDatasimpleTime;
             if ((changeMask0 & (1 << 26)) != 0)
             {
-                CharacterInterpolatedDatafootIkOffsetX = reader.ReadPackedIntDelta(ref ctx, baseline.CharacterInterpolatedDatafootIkOffsetX, compressionModel);
-                CharacterInterpolatedDatafootIkOffsetY = reader.ReadPackedIntDelta(ref ctx, baseline.CharacterInterpolatedDatafootIkOffsetY, compressionModel);
+                CharacterInterpolatedDatafootIkOffsetX = reader.ReadPackedIntDelta(baseline.CharacterInterpolatedDatafootIkOffsetX, compressionModel);
+                CharacterInterpolatedDatafootIkOffsetY = reader.ReadPackedIntDelta(baseline.CharacterInterpolatedDatafootIkOffsetY, compressionModel);
             }
             else
             {
@@ -1923,9 +1923,9 @@ public struct Char_TerraformerSnapshotData : ISnapshotData<Char_TerraformerSnaps
             }
             if ((changeMask0 & (1 << 27)) != 0)
             {
-                CharacterInterpolatedDatafootIkNormalLeftX = reader.ReadPackedIntDelta(ref ctx, baseline.CharacterInterpolatedDatafootIkNormalLeftX, compressionModel);
-                CharacterInterpolatedDatafootIkNormalLeftY = reader.ReadPackedIntDelta(ref ctx, baseline.CharacterInterpolatedDatafootIkNormalLeftY, compressionModel);
-                CharacterInterpolatedDatafootIkNormalLeftZ = reader.ReadPackedIntDelta(ref ctx, baseline.CharacterInterpolatedDatafootIkNormalLeftZ, compressionModel);
+                CharacterInterpolatedDatafootIkNormalLeftX = reader.ReadPackedIntDelta(baseline.CharacterInterpolatedDatafootIkNormalLeftX, compressionModel);
+                CharacterInterpolatedDatafootIkNormalLeftY = reader.ReadPackedIntDelta(baseline.CharacterInterpolatedDatafootIkNormalLeftY, compressionModel);
+                CharacterInterpolatedDatafootIkNormalLeftZ = reader.ReadPackedIntDelta(baseline.CharacterInterpolatedDatafootIkNormalLeftZ, compressionModel);
             }
             else
             {
@@ -1935,9 +1935,9 @@ public struct Char_TerraformerSnapshotData : ISnapshotData<Char_TerraformerSnaps
             }
             if ((changeMask0 & (1 << 28)) != 0)
             {
-                CharacterInterpolatedDatafootIkNormalRightX = reader.ReadPackedIntDelta(ref ctx, baseline.CharacterInterpolatedDatafootIkNormalRightX, compressionModel);
-                CharacterInterpolatedDatafootIkNormalRightY = reader.ReadPackedIntDelta(ref ctx, baseline.CharacterInterpolatedDatafootIkNormalRightY, compressionModel);
-                CharacterInterpolatedDatafootIkNormalRightZ = reader.ReadPackedIntDelta(ref ctx, baseline.CharacterInterpolatedDatafootIkNormalRightZ, compressionModel);
+                CharacterInterpolatedDatafootIkNormalRightX = reader.ReadPackedIntDelta(baseline.CharacterInterpolatedDatafootIkNormalRightX, compressionModel);
+                CharacterInterpolatedDatafootIkNormalRightY = reader.ReadPackedIntDelta(baseline.CharacterInterpolatedDatafootIkNormalRightY, compressionModel);
+                CharacterInterpolatedDatafootIkNormalRightZ = reader.ReadPackedIntDelta(baseline.CharacterInterpolatedDatafootIkNormalRightZ, compressionModel);
             }
             else
             {
@@ -1946,11 +1946,11 @@ public struct Char_TerraformerSnapshotData : ISnapshotData<Char_TerraformerSnaps
                 CharacterInterpolatedDatafootIkNormalRightZ = baseline.CharacterInterpolatedDatafootIkNormalRightZ;
             }
             if ((changeMask0 & (1 << 29)) != 0)
-                CharacterInterpolatedDatafootIkWeight = reader.ReadPackedIntDelta(ref ctx, baseline.CharacterInterpolatedDatafootIkWeight, compressionModel);
+                CharacterInterpolatedDatafootIkWeight = reader.ReadPackedIntDelta(baseline.CharacterInterpolatedDatafootIkWeight, compressionModel);
             else
                 CharacterInterpolatedDatafootIkWeight = baseline.CharacterInterpolatedDatafootIkWeight;
             if ((changeMask0 & (1 << 30)) != 0)
-                CharacterInterpolatedDatablendOutAim = reader.ReadPackedIntDelta(ref ctx, baseline.CharacterInterpolatedDatablendOutAim, compressionModel);
+                CharacterInterpolatedDatablendOutAim = reader.ReadPackedIntDelta(baseline.CharacterInterpolatedDatablendOutAim, compressionModel);
             else
                 CharacterInterpolatedDatablendOutAim = baseline.CharacterInterpolatedDatablendOutAim;
         }

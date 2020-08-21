@@ -118,29 +118,29 @@ public struct DotsSampleGhostSerializerCollection : IGhostSerializerCollection
         throw new ArgumentException("Invalid serializer type");
     }
 
-    public int Serialize(SerializeData data)
+    public int Serialize(ref DataStreamWriter writer, SerializeData data)
     {
         switch (data.ghostType)
         {
             case 0:
             {
-                return GhostSendSystem<DotsSampleGhostSerializerCollection>.InvokeSerialize<PlayerStateGhostSerializer, PlayerStateSnapshotData>(m_PlayerStateGhostSerializer, data);
+                return GhostSendSystem<DotsSampleGhostSerializerCollection>.InvokeSerialize<PlayerStateGhostSerializer, PlayerStateSnapshotData>(m_PlayerStateGhostSerializer, ref writer, data);
             }
             case 1:
             {
-                return GhostSendSystem<DotsSampleGhostSerializerCollection>.InvokeSerialize<Char_TerraformerGhostSerializer, Char_TerraformerSnapshotData>(m_Char_TerraformerGhostSerializer, data);
+                return GhostSendSystem<DotsSampleGhostSerializerCollection>.InvokeSerialize<Char_TerraformerGhostSerializer, Char_TerraformerSnapshotData>(m_Char_TerraformerGhostSerializer, ref writer, data);
             }
             case 2:
             {
-                return GhostSendSystem<DotsSampleGhostSerializerCollection>.InvokeSerialize<Weapon_TerraformerGhostSerializer, Weapon_TerraformerSnapshotData>(m_Weapon_TerraformerGhostSerializer, data);
+                return GhostSendSystem<DotsSampleGhostSerializerCollection>.InvokeSerialize<Weapon_TerraformerGhostSerializer, Weapon_TerraformerSnapshotData>(m_Weapon_TerraformerGhostSerializer, ref writer, data);
             }
             case 3:
             {
-                return GhostSendSystem<DotsSampleGhostSerializerCollection>.InvokeSerialize<GameModeGhostSerializer, GameModeSnapshotData>(m_GameModeGhostSerializer, data);
+                return GhostSendSystem<DotsSampleGhostSerializerCollection>.InvokeSerialize<GameModeGhostSerializer, GameModeSnapshotData>(m_GameModeGhostSerializer, ref writer, data);
             }
             case 4:
             {
-                return GhostSendSystem<DotsSampleGhostSerializerCollection>.InvokeSerialize<TeleporterGhostSerializer, TeleporterSnapshotData>(m_TeleporterGhostSerializer, data);
+                return GhostSendSystem<DotsSampleGhostSerializerCollection>.InvokeSerialize<TeleporterGhostSerializer, TeleporterSnapshotData>(m_TeleporterGhostSerializer, ref writer, data);
             }
             default:
                 throw new ArgumentException("Invalid serializer type");
@@ -157,6 +157,11 @@ public struct EnableDotsSampleGhostSendSystemComponent : IComponentData
 {}
 public class DotsSampleGhostSendSystem : GhostSendSystem<DotsSampleGhostSerializerCollection>
 {
+    public override bool IsEnabled()
+    {
+        return true;
+    }
+
     protected override void OnCreate()
     {
         base.OnCreate();

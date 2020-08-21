@@ -10,9 +10,9 @@ public struct RpcInitializeMap : IRpcCommand
 {
     public NativeString64 MapName;
 
-    public void Serialize(DataStreamWriter writer)
+    public void Serialize(ref DataStreamWriter writer)
     {
-        writer.Write(MapName.LengthInBytes);
+        writer.WriteUShort(MapName.LengthInBytes);
         unsafe
         {
             fixed (byte* b = &MapName.buffer.byte0000)
@@ -22,16 +22,16 @@ public struct RpcInitializeMap : IRpcCommand
         }
     }
 
-    public void Deserialize(DataStreamReader reader, ref DataStreamReader.Context ctx)
+    public void Deserialize(ref DataStreamReader reader)
     {
-        var nameLength = reader.ReadUShort(ref ctx);
+        var nameLength = reader.ReadUShort();
         GameDebug.Assert(nameLength <= NativeString64.MaxLength);
         MapName.LengthInBytes = nameLength;
         unsafe
         {
             fixed (byte* b = &MapName.buffer.byte0000)
             {
-                reader.ReadBytes(ref ctx, b, MapName.LengthInBytes);
+                reader.ReadBytes(b, MapName.LengthInBytes);
             }
         }
     }
@@ -39,7 +39,7 @@ public struct RpcInitializeMap : IRpcCommand
     private static void InvokeExecute(ref RpcExecutor.Parameters parameters)
     {
         var rpcData = default(RpcInitializeMap);
-        rpcData.Deserialize(parameters.Reader, ref parameters.ReaderContext);
+        rpcData.Deserialize(ref parameters.Reader);
 
         var ent = parameters.CommandBuffer.CreateEntity(parameters.JobIndex);
         parameters.CommandBuffer.AddComponent(parameters.JobIndex, ent,
@@ -61,11 +61,11 @@ public struct RpcPlayerSetup : IRpcCommand
     public int CharacterType;
     public short TeamId;
 
-    public void Serialize(DataStreamWriter writer)
+    public void Serialize(ref DataStreamWriter writer)
     {
-        writer.Write(TeamId);
-        writer.Write(CharacterType);
-        writer.Write(PlayerName.LengthInBytes);
+        writer.WriteShort(TeamId);
+        writer.WriteInt(CharacterType);
+        writer.WriteUShort(PlayerName.LengthInBytes);
         unsafe
         {
             fixed (byte* b = &PlayerName.buffer.byte0000)
@@ -75,18 +75,18 @@ public struct RpcPlayerSetup : IRpcCommand
         }
     }
 
-    public void Deserialize(DataStreamReader reader, ref DataStreamReader.Context ctx)
+    public void Deserialize(ref DataStreamReader reader)
     {
-        TeamId = reader.ReadShort(ref ctx);
-        CharacterType = reader.ReadInt(ref ctx);
-        var nameLength = reader.ReadUShort(ref ctx);
+        TeamId = reader.ReadShort();
+        CharacterType = reader.ReadInt();
+        var nameLength = reader.ReadUShort();
         GameDebug.Assert(nameLength <= NativeString64.MaxLength);
         PlayerName.LengthInBytes = nameLength;
         unsafe
         {
             fixed (byte* b = &PlayerName.buffer.byte0000)
             {
-                reader.ReadBytes(ref ctx, b, PlayerName.LengthInBytes);
+                reader.ReadBytes(b, PlayerName.LengthInBytes);
             }
         }
     }
@@ -94,7 +94,7 @@ public struct RpcPlayerSetup : IRpcCommand
     private static void InvokeExecute(ref RpcExecutor.Parameters parameters)
     {
         var rpcData = default(RpcPlayerSetup);
-        rpcData.Deserialize(parameters.Reader, ref parameters.ReaderContext);
+        rpcData.Deserialize(ref parameters.Reader);
 
         parameters.CommandBuffer.AddComponent(parameters.JobIndex, parameters.Connection,
             new PlayerSettingsComponent {CharacterType = rpcData.CharacterType, TeamId = rpcData.TeamId, PlayerName = rpcData.PlayerName});
@@ -111,11 +111,11 @@ class PlayerSetupRpcCommandRequestSystem : RpcCommandRequestSystem<RpcPlayerSetu
 [BurstCompile]
 public struct RpcPlayerReady : IRpcCommand
 {
-    public void Serialize(DataStreamWriter writer)
+    public void Serialize(ref DataStreamWriter writer)
     {
     }
 
-    public void Deserialize(DataStreamReader reader, ref DataStreamReader.Context ctx)
+    public void Deserialize(ref DataStreamReader reader)
     {
     }
     [BurstCompile]
@@ -138,9 +138,9 @@ public struct RpcRemoteCommand : IRpcCommand
 {
     public NativeString64 Command;
 
-    public void Serialize(DataStreamWriter writer)
+    public void Serialize(ref DataStreamWriter writer)
     {
-        writer.Write(Command.LengthInBytes);
+        writer.WriteUShort(Command.LengthInBytes);
         unsafe
         {
             fixed (byte* b = &Command.buffer.byte0000)
@@ -150,16 +150,16 @@ public struct RpcRemoteCommand : IRpcCommand
         }
     }
 
-    public void Deserialize(DataStreamReader reader, ref DataStreamReader.Context ctx)
+    public void Deserialize(ref DataStreamReader reader)
     {
-        var msgLength = reader.ReadUShort(ref ctx);
+        var msgLength = reader.ReadUShort();
         GameDebug.Assert(msgLength <= NativeString64.MaxLength);
         Command.LengthInBytes = msgLength;
         unsafe
         {
             fixed (byte* b = &Command.buffer.byte0000)
             {
-                reader.ReadBytes(ref ctx, b, Command.LengthInBytes);
+                reader.ReadBytes(b, Command.LengthInBytes);
             }
         }
     }
@@ -168,7 +168,7 @@ public struct RpcRemoteCommand : IRpcCommand
     private static void InvokeExecute(ref RpcExecutor.Parameters parameters)
     {
         var rpcData = default(RpcRemoteCommand);
-        rpcData.Deserialize(parameters.Reader, ref parameters.ReaderContext);
+        rpcData.Deserialize(ref parameters.Reader);
 
         var req = parameters.CommandBuffer.CreateEntity(parameters.JobIndex);
         parameters.CommandBuffer.AddComponent(parameters.JobIndex, req, new IncomingRemoteCommandComponent{Command = rpcData.Command, Connection = parameters.Connection});
@@ -187,10 +187,10 @@ public struct RpcChatMessage : IRpcCommand
 {
     public NativeString512 Message;
 
-    public void Serialize(DataStreamWriter writer)
+    public void Serialize(ref DataStreamWriter writer)
     {
         GameDebug.Assert(writer.Capacity-writer.Length > Message.LengthInBytes*2, "Chat message too large (writer=" + (writer.Capacity-writer.Length) + " msg=" + Message.LengthInBytes*2);
-        writer.Write(Message.LengthInBytes);
+        writer.WriteUShort(Message.LengthInBytes);
         unsafe
         {
             fixed (byte* b = &Message.buffer.byte0000)
@@ -200,16 +200,16 @@ public struct RpcChatMessage : IRpcCommand
         }
     }
 
-    public void Deserialize(DataStreamReader reader, ref DataStreamReader.Context ctx)
+    public void Deserialize(ref DataStreamReader reader)
     {
-        var msgLength = reader.ReadUShort(ref ctx);
+        var msgLength = reader.ReadUShort();
         GameDebug.Assert(msgLength <= NativeString512.MaxLength);
         Message.LengthInBytes = msgLength;
         unsafe
         {
             fixed (byte* b = &Message.buffer.byte0000)
             {
-                reader.ReadBytes(ref ctx, b, Message.LengthInBytes);
+                reader.ReadBytes(b, Message.LengthInBytes);
             }
         }
     }
@@ -218,7 +218,7 @@ public struct RpcChatMessage : IRpcCommand
     private static void InvokeExecute(ref RpcExecutor.Parameters parameters)
     {
         var rpcData = default(RpcChatMessage);
-        rpcData.Deserialize(parameters.Reader, ref parameters.ReaderContext);
+        rpcData.Deserialize(ref parameters.Reader);
 
         var req = parameters.CommandBuffer.CreateEntity(parameters.JobIndex);
         parameters.CommandBuffer.AddComponent(parameters.JobIndex, req, new IncomingChatMessageComponent{Message = rpcData.Message, Connection = parameters.Connection});

@@ -118,49 +118,49 @@ public struct UserCommand :  ICommandData<UserCommand>
         get { return quaternion.Euler(new float3(math.radians(90 - lookPitch), math.radians(lookYaw), 0)); }
     }
 
-    public void Serialize(DataStreamWriter writer)
+    public void Serialize(ref DataStreamWriter writer)
     {
-        writer.Write(checkTick);
-        writer.Write(renderTick);
-        writer.Write((int)(moveYaw*10));
-        writer.Write((int)(moveMagnitude*100));
-        writer.Write((uint)buttons.flags);
-        writer.Write(lookYaw);
-        writer.Write(lookPitch);
+        writer.WriteInt(checkTick);
+        writer.WriteInt(renderTick);
+        writer.WriteInt((int)(moveYaw*10));
+        writer.WriteInt((int)(moveMagnitude*100));
+        writer.WriteUInt(buttons.flags);
+        writer.WriteFloat(lookYaw);
+        writer.WriteFloat(lookPitch);
     }
 
-    public void Deserialize(uint tick, DataStreamReader reader, ref DataStreamReader.Context ctx)
+    public void Deserialize(uint tick, ref DataStreamReader reader)
     {
         this.tick = tick;
-        checkTick = reader.ReadInt(ref ctx);
-        renderTick = reader.ReadInt(ref ctx);
-        moveYaw = 0.1f * reader.ReadInt(ref ctx);
-        moveMagnitude = 0.01f * reader.ReadInt(ref ctx);
-        buttons.flags = reader.ReadUInt(ref ctx);
-        lookYaw = reader.ReadFloat(ref ctx);
-        lookPitch = reader.ReadFloat(ref ctx);
+        checkTick = reader.ReadInt();
+        renderTick = reader.ReadInt();
+        moveYaw = 0.1f * reader.ReadInt();
+        moveMagnitude = 0.01f * reader.ReadInt();
+        buttons.flags = reader.ReadUInt();
+        lookYaw = reader.ReadFloat();
+        lookPitch = reader.ReadFloat();
     }
-    public void Serialize(DataStreamWriter writer, UserCommand baseline, NetworkCompressionModel compressionModel)
+    public void Serialize(ref DataStreamWriter writer, UserCommand baseline, NetworkCompressionModel compressionModel)
     {
         writer.WritePackedIntDelta(checkTick, baseline.checkTick, compressionModel);
         writer.WritePackedIntDelta(renderTick, baseline.renderTick, compressionModel);
         writer.WritePackedIntDelta((int)(moveYaw*10), (int)(baseline.moveYaw*10), compressionModel);
         writer.WritePackedIntDelta((int)(moveMagnitude*100), (int)(baseline.moveMagnitude*100), compressionModel);
-        writer.WritePackedUIntDelta((uint)buttons.flags, baseline.buttons.flags, compressionModel);
+        writer.WritePackedUIntDelta(buttons.flags, baseline.buttons.flags, compressionModel);
         writer.WritePackedFloatDelta(lookYaw, baseline.lookYaw, compressionModel);
         writer.WritePackedFloatDelta(lookPitch, baseline.lookPitch, compressionModel);
     }
 
-    public void Deserialize(uint tick, DataStreamReader reader, ref DataStreamReader.Context ctx, UserCommand baseline, NetworkCompressionModel compressionModel)
+    public void Deserialize(uint tick, ref DataStreamReader reader, UserCommand baseline, NetworkCompressionModel compressionModel)
     {
         this.tick = tick;
-        checkTick = reader.ReadPackedIntDelta(ref ctx, baseline.checkTick, compressionModel);
-        renderTick = reader.ReadPackedIntDelta(ref ctx, baseline.renderTick, compressionModel);
-        moveYaw = 0.1f * reader.ReadPackedIntDelta(ref ctx, (int)(baseline.moveYaw*10), compressionModel);
-        moveMagnitude = 0.01f * reader.ReadPackedIntDelta(ref ctx, (int)(baseline.moveMagnitude*100), compressionModel);
-        buttons.flags = reader.ReadPackedUIntDelta(ref ctx, baseline.buttons.flags, compressionModel);
-        lookYaw = reader.ReadPackedFloatDelta(ref ctx, baseline.lookYaw, compressionModel);
-        lookPitch = reader.ReadPackedFloatDelta(ref ctx, baseline.lookPitch, compressionModel);
+        checkTick = reader.ReadPackedIntDelta(baseline.checkTick, compressionModel);
+        renderTick = reader.ReadPackedIntDelta(baseline.renderTick, compressionModel);
+        moveYaw = 0.1f * reader.ReadPackedIntDelta((int)(baseline.moveYaw*10), compressionModel);
+        moveMagnitude = 0.01f * reader.ReadPackedIntDelta((int)(baseline.moveMagnitude*100), compressionModel);
+        buttons.flags = reader.ReadPackedUIntDelta(baseline.buttons.flags, compressionModel);
+        lookYaw = reader.ReadPackedFloatDelta(baseline.lookYaw, compressionModel);
+        lookPitch = reader.ReadPackedFloatDelta(baseline.lookPitch, compressionModel);
     }
 
     public override string ToString()

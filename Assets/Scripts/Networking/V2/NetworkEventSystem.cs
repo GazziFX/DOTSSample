@@ -120,15 +120,14 @@ public class ClientEventSystem : JobComponentSystem
 
     protected override JobHandle OnUpdate(JobHandle inputDeps)
     {
-        JobHandle queryJob;
-        var connection = m_ConnectionQuery.ToEntityArray(Allocator.TempJob, out queryJob);
+        var connection = m_ConnectionQuery.ToEntityArray(Allocator.TempJob);
         var sendSetupJob = new SendPlayerSetupJob {
             CommandBuffer = m_CommandBuffer.CreateCommandBuffer(),
             RpcQueue = m_RpcSettingsQueue,
             ConnectionEntity = connection,
             RpcBuffer = GetBufferFromEntity<OutgoingRpcDataStreamBufferComponent>()
         };
-        var jobHandle = sendSetupJob.ScheduleSingle(this, JobHandle.CombineDependencies(inputDeps, queryJob));
+        var jobHandle = sendSetupJob.ScheduleSingle(this, inputDeps);
 
         var remoteCommandJob = new SendRemoteCommandJob() {
             CommandBuffer = m_CommandBuffer.CreateCommandBuffer(),
@@ -187,16 +186,15 @@ public class ClientReadyEventSystem : JobComponentSystem
 
     protected override JobHandle OnUpdate(JobHandle inputDeps)
     {
-        JobHandle queryJob;
         var sendReadyJob = new SendPlayerReadyJob
         {
             CommandBuffer = m_CommandBuffer.CreateCommandBuffer(),
             RpcQueue = m_RpcReadyQueue,
-            ConnectionEntity = m_ReadyQuery.ToEntityArray(Allocator.TempJob, out queryJob),
+            ConnectionEntity = m_ReadyQuery.ToEntityArray(Allocator.TempJob),
             RpcBuffer = GetBufferFromEntity<OutgoingRpcDataStreamBufferComponent>()
         };
 
-        var jobHandle = sendReadyJob.ScheduleSingle(this, JobHandle.CombineDependencies(inputDeps, queryJob));
+        var jobHandle = sendReadyJob.ScheduleSingle(this, inputDeps);
 
         m_CommandBuffer.AddJobHandleForProducer(jobHandle);
         return jobHandle;
