@@ -55,7 +55,7 @@ public class DamageManager : JobComponentSystem
 
         DamageEventBufferApplyDeps.Complete();
 
-        for (int i = 0; i < DamageEventBuffer.Length; i++)
+        for (int i = 0; i < DamageEventBuffer.Capacity; i++)
         {
 //            m_DamageEventBuffers[i].Dispose();
 

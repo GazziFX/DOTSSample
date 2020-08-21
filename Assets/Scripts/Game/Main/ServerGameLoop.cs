@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using Unity.Entities;
 using UnityEngine.Profiling;
 using SQP;
@@ -42,7 +42,7 @@ public class BeforeServerPredictionSystem : JobComponentSystem
 }
 [UpdateInGroup(typeof(ServerSimulationSystemGroup))]
 [UpdateAfter(typeof(GhostSimulationSystemGroup))]
-[UpdateBefore(typeof(AnimationSystemGroup))]
+[UpdateBefore(typeof(PreAnimationSystemGroup))]
 [AlwaysSynchronizeSystem]
 public class AfterServerPredictionSystem : JobComponentSystem
 {

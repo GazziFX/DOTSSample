@@ -4,6 +4,7 @@ using Unity.Animation;
 using Unity.Entities;
 using UnityEngine;
 using UnityEditor.Animations;
+using Unity.Animation.Hybrid;
 
 public class AnimSourceDamageAuthoring : AnimSourceAuthoring, IConvertGameObjectToEntity
 {
@@ -19,7 +20,7 @@ public class AnimSourceDamageAuthoring : AnimSourceAuthoring, IConvertGameObject
         var settings = new AnimSourceDamage.Settings
         {
             Blend = Blend,
-            AdditiveRefPose = ClipBuilder.AnimationClipToDenseClip(AdditiveRefPose),
+            AdditiveRefPose = AdditiveRefPose.ToDenseClip(),
         };
 
         BlendTreeEntityStoreHelper.AddBlendTree1DComponents(dstManager,entity, BlendTreeAsset);

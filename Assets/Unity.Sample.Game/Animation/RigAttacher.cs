@@ -51,7 +51,7 @@ public class RigAttacher
     }
 
     [UpdateInGroup(typeof(SimulationSystemGroup))]
-    [UpdateAfter(typeof(AnimationSystemGroup))]
+    [UpdateAfter(typeof(PreAnimationSystemGroup))]
     [UpdateBefore(typeof(TransformSystemGroup))]
     [UpdateBefore(typeof(BuildPhysicsWorld))]
     [AlwaysSynchronizeSystem]
@@ -79,7 +79,7 @@ public class RigAttacher
                     if (attachEntity.Value != Entity.Null)
                     {
                         Profiler.BeginSample("GetSharedRigDef");
-                        var sharedRigDef = EntityManager.GetSharedComponentData<SharedRigDefinition>(attachEntity.Value);
+                        var sharedRigDef = EntityManager.GetComponentData<Rig>(attachEntity.Value);
                         Profiler.EndSample();
                         
                         if (attachBone.Value.ReferenceRig.Value.GetHashCode() == sharedRigDef.Value.Value.GetHashCode())

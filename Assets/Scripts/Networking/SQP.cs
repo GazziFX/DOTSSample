@@ -197,15 +197,15 @@ namespace SQP
 
             public void ToStream(ref DataStreamWriter writer)
             {
-                writer.WriteUShortNetworkByteOrder((UInt16)CurrentPlayers);
-                writer.WriteUShortNetworkByteOrder((UInt16)MaxPlayers);
+                writer.WriteUShortNetworkByteOrder(CurrentPlayers);
+                writer.WriteUShortNetworkByteOrder(MaxPlayers);
 
                 writer.WriteString(ServerName, encoding);
                 writer.WriteString(GameType, encoding);
                 writer.WriteString(BuildId, encoding);
                 writer.WriteString(Map, encoding);
 
-                writer.WriteUShortNetworkByteOrder((UInt16)Port);
+                writer.WriteUShortNetworkByteOrder(Port);
             }
 
             public void FromStream(ref DataStreamReader reader)
@@ -228,7 +228,7 @@ namespace SQP
 
             var start = (ushort)writer.Length;
 
-            var chunkValue = writer.WriteUIntNetworkByteOrder((uint)0U);
+            var chunkValue = writer.WriteUIntNetworkByteOrder(0U);
 
             var chunkStart = writer.Length;
             ServerInfoData.ToStream(ref writer);

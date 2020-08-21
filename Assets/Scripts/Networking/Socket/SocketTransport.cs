@@ -1,4 +1,4 @@
-﻿using System.Net;
+using System.Net;
 using Unity.Networking.Transport;
 using Unity.Collections;
 using Unity.Sample.Core;

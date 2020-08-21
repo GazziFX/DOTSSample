@@ -104,7 +104,7 @@ public struct TeleporterSnapshotData : ISnapshotData<TeleporterSnapshotData>
         Child1TranslationValueZ = predictor.PredictInt(Child1TranslationValueZ, baseline1.Child1TranslationValueZ, baseline2.Child1TranslationValueZ);
     }
 
-    public void Serialize(int networkId, ref TeleporterSnapshotData baseline, DataStreamWriter writer, NetworkCompressionModel compressionModel)
+    public void Serialize(int networkId, ref TeleporterSnapshotData baseline, ref DataStreamWriter writer, NetworkCompressionModel compressionModel)
     {
         changeMask0 = (TeleporterPresentationDataeffectTick != baseline.TeleporterPresentationDataeffectTick) ? 1u : 0;
         changeMask0 |= (TranslationValueX != baseline.TranslationValueX ||
@@ -139,20 +139,20 @@ public struct TeleporterSnapshotData : ISnapshotData<TeleporterSnapshotData>
         }
     }
 
-    public void Deserialize(uint tick, ref TeleporterSnapshotData baseline, DataStreamReader reader, ref DataStreamReader.Context ctx,
+    public void Deserialize(uint tick, ref TeleporterSnapshotData baseline, ref DataStreamReader reader,
         NetworkCompressionModel compressionModel)
     {
         this.tick = tick;
-        changeMask0 = reader.ReadPackedUIntDelta(ref ctx, baseline.changeMask0, compressionModel);
+        changeMask0 = reader.ReadPackedUIntDelta(baseline.changeMask0, compressionModel);
         if ((changeMask0 & (1 << 0)) != 0)
-            TeleporterPresentationDataeffectTick = reader.ReadPackedIntDelta(ref ctx, baseline.TeleporterPresentationDataeffectTick, compressionModel);
+            TeleporterPresentationDataeffectTick = reader.ReadPackedIntDelta(baseline.TeleporterPresentationDataeffectTick, compressionModel);
         else
             TeleporterPresentationDataeffectTick = baseline.TeleporterPresentationDataeffectTick;
         if ((changeMask0 & (1 << 1)) != 0)
         {
-            TranslationValueX = reader.ReadPackedIntDelta(ref ctx, baseline.TranslationValueX, compressionModel);
-            TranslationValueY = reader.ReadPackedIntDelta(ref ctx, baseline.TranslationValueY, compressionModel);
-            TranslationValueZ = reader.ReadPackedIntDelta(ref ctx, baseline.TranslationValueZ, compressionModel);
+            TranslationValueX = reader.ReadPackedIntDelta(baseline.TranslationValueX, compressionModel);
+            TranslationValueY = reader.ReadPackedIntDelta(baseline.TranslationValueY, compressionModel);
+            TranslationValueZ = reader.ReadPackedIntDelta(baseline.TranslationValueZ, compressionModel);
         }
         else
         {
@@ -162,9 +162,9 @@ public struct TeleporterSnapshotData : ISnapshotData<TeleporterSnapshotData>
         }
         if ((changeMask0 & (1 << 2)) != 0)
         {
-            Child0TranslationValueX = reader.ReadPackedIntDelta(ref ctx, baseline.Child0TranslationValueX, compressionModel);
-            Child0TranslationValueY = reader.ReadPackedIntDelta(ref ctx, baseline.Child0TranslationValueY, compressionModel);
-            Child0TranslationValueZ = reader.ReadPackedIntDelta(ref ctx, baseline.Child0TranslationValueZ, compressionModel);
+            Child0TranslationValueX = reader.ReadPackedIntDelta(baseline.Child0TranslationValueX, compressionModel);
+            Child0TranslationValueY = reader.ReadPackedIntDelta(baseline.Child0TranslationValueY, compressionModel);
+            Child0TranslationValueZ = reader.ReadPackedIntDelta(baseline.Child0TranslationValueZ, compressionModel);
         }
         else
         {
@@ -174,9 +174,9 @@ public struct TeleporterSnapshotData : ISnapshotData<TeleporterSnapshotData>
         }
         if ((changeMask0 & (1 << 3)) != 0)
         {
-            Child1TranslationValueX = reader.ReadPackedIntDelta(ref ctx, baseline.Child1TranslationValueX, compressionModel);
-            Child1TranslationValueY = reader.ReadPackedIntDelta(ref ctx, baseline.Child1TranslationValueY, compressionModel);
-            Child1TranslationValueZ = reader.ReadPackedIntDelta(ref ctx, baseline.Child1TranslationValueZ, compressionModel);
+            Child1TranslationValueX = reader.ReadPackedIntDelta(baseline.Child1TranslationValueX, compressionModel);
+            Child1TranslationValueY = reader.ReadPackedIntDelta(baseline.Child1TranslationValueY, compressionModel);
+            Child1TranslationValueZ = reader.ReadPackedIntDelta(baseline.Child1TranslationValueZ, compressionModel);
         }
         else
         {

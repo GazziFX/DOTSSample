@@ -305,7 +305,7 @@ public struct Weapon_TerraformerSnapshotData : ISnapshotData<Weapon_TerraformerS
         Child0AbilityAutoRiflePredictedStateCOF = predictor.PredictInt(Child0AbilityAutoRiflePredictedStateCOF, baseline1.Child0AbilityAutoRiflePredictedStateCOF, baseline2.Child0AbilityAutoRiflePredictedStateCOF);
     }
 
-    public void Serialize(int networkId, ref Weapon_TerraformerSnapshotData baseline, DataStreamWriter writer, NetworkCompressionModel compressionModel)
+    public void Serialize(int networkId, ref Weapon_TerraformerSnapshotData baseline, ref DataStreamWriter writer, NetworkCompressionModel compressionModel)
     {
         changeMask0 = (ItemInputStateowner != baseline.ItemInputStateowner) ? 1u : 0;
         changeMask0 |= (ItemInputStateslot != baseline.ItemInputStateslot) ? (1u<<1) : 0;
@@ -367,48 +367,48 @@ public struct Weapon_TerraformerSnapshotData : ISnapshotData<Weapon_TerraformerS
             writer.WritePackedIntDelta(Child0AbilityAutoRiflePredictedStateCOF, baseline.Child0AbilityAutoRiflePredictedStateCOF, compressionModel);
     }
 
-    public void Deserialize(uint tick, ref Weapon_TerraformerSnapshotData baseline, DataStreamReader reader, ref DataStreamReader.Context ctx,
+    public void Deserialize(uint tick, ref Weapon_TerraformerSnapshotData baseline, ref DataStreamReader reader,
         NetworkCompressionModel compressionModel)
     {
         this.tick = tick;
-        changeMask0 = reader.ReadPackedUIntDelta(ref ctx, baseline.changeMask0, compressionModel);
+        changeMask0 = reader.ReadPackedUIntDelta(baseline.changeMask0, compressionModel);
         if ((changeMask0 & (1 << 0)) != 0)
-            ItemInputStateowner = reader.ReadPackedIntDelta(ref ctx, baseline.ItemInputStateowner, compressionModel);
+            ItemInputStateowner = reader.ReadPackedIntDelta(baseline.ItemInputStateowner, compressionModel);
         else
             ItemInputStateowner = baseline.ItemInputStateowner;
         if ((changeMask0 & (1 << 1)) != 0)
-            ItemInputStateslot = reader.ReadPackedUIntDelta(ref ctx, baseline.ItemInputStateslot, compressionModel);
+            ItemInputStateslot = reader.ReadPackedUIntDelta(baseline.ItemInputStateslot, compressionModel);
         else
             ItemInputStateslot = baseline.ItemInputStateslot;
         if ((changeMask0 & (1 << 2)) != 0)
-            ItemInputStateplayerId = reader.ReadPackedIntDelta(ref ctx, baseline.ItemInputStateplayerId, compressionModel);
+            ItemInputStateplayerId = reader.ReadPackedIntDelta(baseline.ItemInputStateplayerId, compressionModel);
         else
             ItemInputStateplayerId = baseline.ItemInputStateplayerId;
         if ((changeMask0 & (1 << 3)) != 0)
-            Child0AbilityAbilityActionaction = reader.ReadPackedIntDelta(ref ctx, baseline.Child0AbilityAbilityActionaction, compressionModel);
+            Child0AbilityAbilityActionaction = reader.ReadPackedIntDelta(baseline.Child0AbilityAbilityActionaction, compressionModel);
         else
             Child0AbilityAbilityActionaction = baseline.Child0AbilityAbilityActionaction;
         if ((changeMask0 & (1 << 4)) != 0)
-            Child0AbilityAbilityActionactionStartTick = reader.ReadPackedIntDelta(ref ctx, baseline.Child0AbilityAbilityActionactionStartTick, compressionModel);
+            Child0AbilityAbilityActionactionStartTick = reader.ReadPackedIntDelta(baseline.Child0AbilityAbilityActionactionStartTick, compressionModel);
         else
             Child0AbilityAbilityActionactionStartTick = baseline.Child0AbilityAbilityActionactionStartTick;
         if ((changeMask0 & (1 << 5)) != 0)
-            Child0AbilityAbilityControlbehaviorState = reader.ReadPackedIntDelta(ref ctx, baseline.Child0AbilityAbilityControlbehaviorState, compressionModel);
+            Child0AbilityAbilityControlbehaviorState = reader.ReadPackedIntDelta(baseline.Child0AbilityAbilityControlbehaviorState, compressionModel);
         else
             Child0AbilityAbilityControlbehaviorState = baseline.Child0AbilityAbilityControlbehaviorState;
         if ((changeMask0 & (1 << 6)) != 0)
-            Child0AbilityAbilityControlrequestDeactivate = reader.ReadPackedUIntDelta(ref ctx, baseline.Child0AbilityAbilityControlrequestDeactivate, compressionModel);
+            Child0AbilityAbilityControlrequestDeactivate = reader.ReadPackedUIntDelta(baseline.Child0AbilityAbilityControlrequestDeactivate, compressionModel);
         else
             Child0AbilityAbilityControlrequestDeactivate = baseline.Child0AbilityAbilityControlrequestDeactivate;
         if ((changeMask0 & (1 << 7)) != 0)
-            Child0AbilityAutoRifleInterpolatedStatefireTick = reader.ReadPackedIntDelta(ref ctx, baseline.Child0AbilityAutoRifleInterpolatedStatefireTick, compressionModel);
+            Child0AbilityAutoRifleInterpolatedStatefireTick = reader.ReadPackedIntDelta(baseline.Child0AbilityAutoRifleInterpolatedStatefireTick, compressionModel);
         else
             Child0AbilityAutoRifleInterpolatedStatefireTick = baseline.Child0AbilityAutoRifleInterpolatedStatefireTick;
         if ((changeMask0 & (1 << 8)) != 0)
         {
-            Child0AbilityAutoRifleInterpolatedStatefireEndPosX = reader.ReadPackedIntDelta(ref ctx, baseline.Child0AbilityAutoRifleInterpolatedStatefireEndPosX, compressionModel);
-            Child0AbilityAutoRifleInterpolatedStatefireEndPosY = reader.ReadPackedIntDelta(ref ctx, baseline.Child0AbilityAutoRifleInterpolatedStatefireEndPosY, compressionModel);
-            Child0AbilityAutoRifleInterpolatedStatefireEndPosZ = reader.ReadPackedIntDelta(ref ctx, baseline.Child0AbilityAutoRifleInterpolatedStatefireEndPosZ, compressionModel);
+            Child0AbilityAutoRifleInterpolatedStatefireEndPosX = reader.ReadPackedIntDelta(baseline.Child0AbilityAutoRifleInterpolatedStatefireEndPosX, compressionModel);
+            Child0AbilityAutoRifleInterpolatedStatefireEndPosY = reader.ReadPackedIntDelta(baseline.Child0AbilityAutoRifleInterpolatedStatefireEndPosY, compressionModel);
+            Child0AbilityAutoRifleInterpolatedStatefireEndPosZ = reader.ReadPackedIntDelta(baseline.Child0AbilityAutoRifleInterpolatedStatefireEndPosZ, compressionModel);
         }
         else
         {
@@ -417,14 +417,14 @@ public struct Weapon_TerraformerSnapshotData : ISnapshotData<Weapon_TerraformerS
             Child0AbilityAutoRifleInterpolatedStatefireEndPosZ = baseline.Child0AbilityAutoRifleInterpolatedStatefireEndPosZ;
         }
         if ((changeMask0 & (1 << 9)) != 0)
-            Child0AbilityAutoRifleInterpolatedStateimpactType = reader.ReadPackedIntDelta(ref ctx, baseline.Child0AbilityAutoRifleInterpolatedStateimpactType, compressionModel);
+            Child0AbilityAutoRifleInterpolatedStateimpactType = reader.ReadPackedIntDelta(baseline.Child0AbilityAutoRifleInterpolatedStateimpactType, compressionModel);
         else
             Child0AbilityAutoRifleInterpolatedStateimpactType = baseline.Child0AbilityAutoRifleInterpolatedStateimpactType;
         if ((changeMask0 & (1 << 10)) != 0)
         {
-            Child0AbilityAutoRifleInterpolatedStateimpactNormalX = reader.ReadPackedIntDelta(ref ctx, baseline.Child0AbilityAutoRifleInterpolatedStateimpactNormalX, compressionModel);
-            Child0AbilityAutoRifleInterpolatedStateimpactNormalY = reader.ReadPackedIntDelta(ref ctx, baseline.Child0AbilityAutoRifleInterpolatedStateimpactNormalY, compressionModel);
-            Child0AbilityAutoRifleInterpolatedStateimpactNormalZ = reader.ReadPackedIntDelta(ref ctx, baseline.Child0AbilityAutoRifleInterpolatedStateimpactNormalZ, compressionModel);
+            Child0AbilityAutoRifleInterpolatedStateimpactNormalX = reader.ReadPackedIntDelta(baseline.Child0AbilityAutoRifleInterpolatedStateimpactNormalX, compressionModel);
+            Child0AbilityAutoRifleInterpolatedStateimpactNormalY = reader.ReadPackedIntDelta(baseline.Child0AbilityAutoRifleInterpolatedStateimpactNormalY, compressionModel);
+            Child0AbilityAutoRifleInterpolatedStateimpactNormalZ = reader.ReadPackedIntDelta(baseline.Child0AbilityAutoRifleInterpolatedStateimpactNormalZ, compressionModel);
         }
         else
         {
@@ -433,19 +433,19 @@ public struct Weapon_TerraformerSnapshotData : ISnapshotData<Weapon_TerraformerS
             Child0AbilityAutoRifleInterpolatedStateimpactNormalZ = baseline.Child0AbilityAutoRifleInterpolatedStateimpactNormalZ;
         }
         if ((changeMask0 & (1 << 11)) != 0)
-            Child0AbilityAutoRiflePredictedStateaction = reader.ReadPackedIntDelta(ref ctx, baseline.Child0AbilityAutoRiflePredictedStateaction, compressionModel);
+            Child0AbilityAutoRiflePredictedStateaction = reader.ReadPackedIntDelta(baseline.Child0AbilityAutoRiflePredictedStateaction, compressionModel);
         else
             Child0AbilityAutoRiflePredictedStateaction = baseline.Child0AbilityAutoRiflePredictedStateaction;
         if ((changeMask0 & (1 << 12)) != 0)
-            Child0AbilityAutoRiflePredictedStatephaseStartTick = reader.ReadPackedIntDelta(ref ctx, baseline.Child0AbilityAutoRiflePredictedStatephaseStartTick, compressionModel);
+            Child0AbilityAutoRiflePredictedStatephaseStartTick = reader.ReadPackedIntDelta(baseline.Child0AbilityAutoRiflePredictedStatephaseStartTick, compressionModel);
         else
             Child0AbilityAutoRiflePredictedStatephaseStartTick = baseline.Child0AbilityAutoRiflePredictedStatephaseStartTick;
         if ((changeMask0 & (1 << 13)) != 0)
-            Child0AbilityAutoRiflePredictedStateammoInClip = reader.ReadPackedIntDelta(ref ctx, baseline.Child0AbilityAutoRiflePredictedStateammoInClip, compressionModel);
+            Child0AbilityAutoRiflePredictedStateammoInClip = reader.ReadPackedIntDelta(baseline.Child0AbilityAutoRiflePredictedStateammoInClip, compressionModel);
         else
             Child0AbilityAutoRiflePredictedStateammoInClip = baseline.Child0AbilityAutoRiflePredictedStateammoInClip;
         if ((changeMask0 & (1 << 14)) != 0)
-            Child0AbilityAutoRiflePredictedStateCOF = reader.ReadPackedIntDelta(ref ctx, baseline.Child0AbilityAutoRiflePredictedStateCOF, compressionModel);
+            Child0AbilityAutoRiflePredictedStateCOF = reader.ReadPackedIntDelta(baseline.Child0AbilityAutoRiflePredictedStateCOF, compressionModel);
         else
             Child0AbilityAutoRiflePredictedStateCOF = baseline.Child0AbilityAutoRiflePredictedStateCOF;
     }

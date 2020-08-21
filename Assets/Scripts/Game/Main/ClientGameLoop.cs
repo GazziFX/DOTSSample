@@ -1,4 +1,4 @@
-﻿using Unity.Collections;
+using Unity.Collections;
 using UnityEngine;
 using Unity.Entities;
 using Unity.Jobs;
@@ -41,7 +41,7 @@ public class BeforeClientPredictionSystem : JobComponentSystem
 }
 [UpdateInGroup(typeof(ClientSimulationSystemGroup))]
 [UpdateAfter(typeof(GhostSimulationSystemGroup))]
-[UpdateBefore(typeof(Unity.Animation.AnimationSystemGroup))]
+[UpdateBefore(typeof(Unity.Animation.PreAnimationSystemGroup))]
 [AlwaysUpdateSystem]
 [AlwaysSynchronizeSystem]
 public class AfterClientPredictionSystem : JobComponentSystem
@@ -115,7 +115,7 @@ public class ClientGameWorld
         m_GameModeSystem.SetLocalPlayerId(localPlayerId);
 
         m_controlledEntityCameraUpdate = m_GameWorld.GetOrCreateSystem<ControlledEntityCameraUpdate>();
-        m_controlledEntityCameraUpdate.SortSystemUpdateList();// TODO (mogensh) currently needed because of bug in entities preview.26
+        m_controlledEntityCameraUpdate.SortSystems();// TODO (mogensh) currently needed because of bug in entities preview.26
 
         //@TODO: Temp hack for unite keynote to hide error
         Debug.developerConsoleVisible = false;

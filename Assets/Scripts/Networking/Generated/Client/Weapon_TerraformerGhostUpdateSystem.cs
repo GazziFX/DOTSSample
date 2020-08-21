@@ -293,13 +293,12 @@ public partial class Weapon_TerraformerGhostSpawnSystem : DefaultGhostSpawnSyste
     }
     protected override JobHandle SetPredictedGhostDefaults(NativeArray<Weapon_TerraformerSnapshotData> snapshots, NativeArray<int> predictionMask, JobHandle inputDeps)
     {
-        JobHandle playerHandle;
         var job = new SetPredictedDefault
         {
             snapshots = snapshots,
             predictionMask = predictionMask,
-            localPlayerId = m_PlayerGroup.ToComponentDataArray<NetworkIdComponent>(Allocator.TempJob, out playerHandle),
+            localPlayerId = m_PlayerGroup.ToComponentDataArray<NetworkIdComponent>(Allocator.TempJob),
         };
-        return job.Schedule(predictionMask.Length, 8, JobHandle.CombineDependencies(playerHandle, inputDeps));
+        return job.Schedule(predictionMask.Length, 8, inputDeps);
     }
 }

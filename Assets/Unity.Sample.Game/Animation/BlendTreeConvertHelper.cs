@@ -2,6 +2,7 @@ using Unity.Animation;
 using Unity.Entities;
 using Unity.Mathematics;
 using UnityEngine;
+using Unity.Animation.Hybrid;
 
 #if UNITY_EDITOR
 using UnityEditor.Animations;
@@ -16,27 +17,12 @@ public class BlendTreeEntityStoreHelper
         public StringHash BlendParameter;
     }
 
-    public struct BlendTree1DMotionData : IBufferElementData
-    {
-        public float MotionThreshold;
-        public float MotionSpeed;
-        public BlobAssetReference<Clip> Motion;
-        public MotionType MotionType;
-    }
-
     public struct BlendTree2DData : IComponentData
     {
         public StringHash BlendParam;
         public StringHash BlendParamY;
     }
 
-    public struct BlendTree2DMotionData : IBufferElementData
-    {
-        public float2                              MotionPosition;
-        public float                               MotionSpeed;
-        public BlobAssetReference<Clip>            Motion;
-        public MotionType                          MotionType;
-    }
 
 
 
@@ -55,8 +41,7 @@ public class BlendTreeEntityStoreHelper
             {
                 MotionThreshold = blendTree.children[i].threshold,
                 MotionSpeed = blendTree.children[i].timeScale,
-                Motion = UnityEditor.Animations.BlendTreeConvertHelper.Convert(blendTree.children[i].motion),
-                MotionType = UnityEditor.Animations.BlendTreeConvertHelper.GetMotionType(blendTree.children[i].motion),
+                Motion = BlendTreeConvertHelper.Convert(blendTree.children[i].motion),
             });
         }
     }
@@ -78,8 +63,7 @@ public class BlendTreeEntityStoreHelper
             {
                 MotionPosition = blendTree.children[i].position,
                 MotionSpeed = blendTree.children[i].timeScale,
-                Motion = UnityEditor.Animations.BlendTreeConvertHelper.Convert(blendTree.children[i].motion),
-                MotionType = UnityEditor.Animations.BlendTreeConvertHelper.GetMotionType(blendTree.children[i].motion),
+                Motion = BlendTreeConvertHelper.Convert(blendTree.children[i].motion),
             });
         }
     }
@@ -88,35 +72,15 @@ public class BlendTreeEntityStoreHelper
     public static BlobAssetReference<BlendTree1D> CreateBlendTree1DFromComponents(EntityManager entityManager, Entity entity)
     {
 
-        var data = entityManager.GetComponentData<BlendTree1DData>(entity);
-        var motionData =  entityManager.GetBuffer<BlendTree1DMotionData>(entity);
-        var targetMotionData = new Unity.Animation.BlendTree1DMotionData[motionData.Length];
-        for(int i=0;i<motionData.Length;i++)
-        {
-            targetMotionData[i].MotionThreshold = motionData[i].MotionThreshold;
-            targetMotionData[i].MotionSpeed = motionData[i].MotionSpeed;
-            targetMotionData[i].Motion.Clip = motionData[i].Motion;
-            targetMotionData[i].MotionType = motionData[i].MotionType;
-        }
-
-        return BlendTreeBuilder.CreateBlendTree(targetMotionData, data.BlendParameter );
+        BlendTree1DMotionData[] blendTreeMotionData = entityManager.GetBuffer<BlendTree1DMotionData>(entity).ToNativeArray(Unity.Collections.Allocator.Temp).ToArray();
+        return BlendTreeBuilder.CreateBlendTree(blendTreeMotionData);
     }
 
-    public static BlobAssetReference<BlendTree2DSimpleDirectionnal> CreateBlendTree2DFromComponents(EntityManager entityManager,
+    public static BlobAssetReference<BlendTree2DSimpleDirectional> CreateBlendTree2DFromComponents(EntityManager entityManager,
         Entity entity)
     {
-        // Create blendspace
-        var blendSpaceData = entityManager.GetComponentData<BlendTree2DData>(entity);
-        var blendSpaceEntries =  entityManager.GetBuffer<BlendTree2DMotionData>(entity);
-        var blendTree2DMotionData = new Unity.Animation.BlendTree2DMotionData[blendSpaceEntries.Length];
-        for(int i=0;i<blendSpaceEntries.Length;i++)
-        {
-            blendTree2DMotionData[i].MotionPosition = blendSpaceEntries[i].MotionPosition;
-            blendTree2DMotionData[i].MotionSpeed = blendSpaceEntries[i].MotionSpeed;
-            blendTree2DMotionData[i].Motion.Clip = blendSpaceEntries[i].Motion;
-            blendTree2DMotionData[i].MotionType = blendSpaceEntries[i].MotionType;
-        }
-        return BlendTreeBuilder.CreateBlendTree2DSimpleDirectionnal(blendTree2DMotionData, blendSpaceData.BlendParam, blendSpaceData.BlendParamY );
+        BlendTree2DMotionData[] blendTree2DMotionData = entityManager.GetBuffer<BlendTree2DMotionData>(entity).ToNativeArray(Unity.Collections.Allocator.Temp).ToArray();
+        return BlendTreeBuilder.CreateBlendTree2DSimpleDirectional(blendTree2DMotionData);
     }
 }
 
@@ -126,7 +90,7 @@ namespace UnityEditor.Animations
 {
     public class BlendTreeConvertHelper
     {
-        public static BlobAssetReference<Clip> Convert(UnityEngine.Motion motion)
+        public static Unity.Animation.Motion Convert(UnityEngine.Motion motion)
         {
             var animationClip = motion as AnimationClip;
 //            var blendTree = motion as BlendTree;
@@ -136,23 +100,11 @@ namespace UnityEditor.Animations
 //            else if( animationClip != null)
             if( animationClip != null)
             {
-                var clip = ClipBuilder.AnimationClipToDenseClip(animationClip);
-                return clip;
+                var clip = animationClip.ToDenseClip();
+                return new Unity.Animation.Motion { Clip = clip };
             }
             else
                 throw new System.ArgumentException($"Selected Motion type is not supported.");
-        }
-
-        public static MotionType GetMotionType(UnityEngine.Motion motion)
-        {
-            var blendTree = motion as BlendTree;
-
-            if (blendTree != null)
-            {
-                return blendTree.blendType == BlendTreeType.Simple1D ? MotionType.BlendTree1D : MotionType.BlendTree2DSimpleDirectionnal;
-            }
-            else
-                return MotionType.Clip;
         }
     }
 }

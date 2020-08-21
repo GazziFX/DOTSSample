@@ -49,13 +49,13 @@ public class BoundaryNode
     }
 
 
-    public override void Init(InitContext ctx)
+    protected override void Init(InitContext ctx)
     {
     }
 
-    public override void Destroy(NodeHandle handle)
+    /*public override void Destroy(NodeHandle handle)
     {
-    }
+    }*/
 
     public void HandleMessage(in MessageContext ctx, in BlobAssetReference<RigDefinition> rigBindings)
     {

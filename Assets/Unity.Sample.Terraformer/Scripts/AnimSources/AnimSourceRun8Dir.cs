@@ -15,7 +15,7 @@ public class AnimSourceRun8Dir
 
     public struct Settings : IComponentData
     {
-        public BlobAssetReference<BlendTree2DSimpleDirectionnal> RunBlendSpace2D;
+        public BlobAssetReference<BlendTree2DSimpleDirectional> RunBlendSpace2D;
         public BlobAssetReference<Clip> RunAimClipRef;
         public BlobAssetReference<Clip> RunAimHorizontalClipRef;
         public BlobAssetReference<Clip> AdditiveRefPose;

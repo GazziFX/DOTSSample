@@ -27,7 +27,7 @@ public class AnimationGraphHelper
 
     static Dictionary<AnimationGraphSystem,NodeSetData> g_AnimationGraphSystems = new Dictionary<AnimationGraphSystem, NodeSetData>();
 
-    public static NodeHandle<T> CreateNode<T>(AnimationGraphSystem animGraphSys, string name) where T :INodeDefinition, new()
+    public static NodeHandle<T> CreateNode<T>(AnimationGraphSystem animGraphSys, string name) where T : NodeDefinition, new()
     {
         var handle = animGraphSys.Set.Create<T>();
         GameDebug.Log(animGraphSys.World,ShowLifetime, "Create node. hash:{0} name:{1} ", handle.GetHashCode(), name);
@@ -41,7 +41,7 @@ public class AnimationGraphHelper
         return handle;
     }
 
-    public static void DestroyNode<T>(AnimationGraphSystem animGraphSys, NodeHandle<T> handle)where T :INodeDefinition, new()
+    public static void DestroyNode<T>(AnimationGraphSystem animGraphSys, NodeHandle<T> handle)where T : NodeDefinition, new()
     {
         animGraphSys.Set.Destroy(handle);
         GameDebug.Log(animGraphSys.World,ShowLifetime, "Destroy node. hash:{0}", handle.GetHashCode());
